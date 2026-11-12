@@ -1,0 +1,302 @@
+{
+ "scan_date": "2026-11-11",
+ "run_at": "2026-11-12 12:20 HKT (first scan)",
+ "markets": {
+  "PSEi": {
+   "label": "PSEi (30 stocks)",
+   "total": 30,
+   "ma_bull": 13,
+   "hma_up": 17,
+   "rows": [
+    {
+     "tv": "PSE:JGS",
+     "symbol": "JGS",
+     "name": "JG Summit Holdings",
+     "close": 17.5,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 0
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 4
+      }
+     ],
+     "best": 0,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": 0.25,
+     "earnings": "2026-11-18"
+    },
+    {
+     "tv": "PSE:MONDE",
+     "symbol": "MONDE",
+     "name": "Monde Nissin",
+     "close": 6.38,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 0
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 4
+      }
+     ],
+     "best": 0,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": 0.3,
+     "earnings": null
+    },
+    {
+     "tv": "PSE:DMC",
+     "symbol": "DMC",
+     "name": "DMCI Holdings",
+     "close": 6.83,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 0
+      }
+     ],
+     "best": 0,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": -5.45,
+     "earnings": null
+    },
+    {
+     "tv": "PSE:MER",
+     "symbol": "MER",
+     "name": "Manila Electric",
+     "close": 446,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 1
+      }
+     ],
+     "best": 1,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": -0.1,
+     "earnings": null
+    },
+    {
+     "tv": "PSE:RCR",
+     "symbol": "RCR",
+     "name": "RL Commercial REIT",
+     "close": 6.07,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 1
+      }
+     ],
+     "best": 1,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": -1.84,
+     "earnings": null
+    },
+    {
+     "tv": "PSE:SCC",
+     "symbol": "SCC",
+     "name": "Semirara Mining & Power",
+     "close": 11,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 1
+      }
+     ],
+     "best": 1,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": -4.31,
+     "earnings": null
+    },
+    {
+     "tv": "PSE:AC",
+     "symbol": "AC",
+     "name": "Ayala Corp",
+     "close": 560,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 2
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 3
+      }
+     ],
+     "best": 2,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": 0.65,
+     "earnings": "2026-11-12"
+    },
+    {
+     "tv": "PSE:CNPF",
+     "symbol": "CNPF",
+     "name": "Century Pacific Food",
+     "close": 29.4,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 2
+      }
+     ],
+     "best": 2,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": -5.08,
+     "earnings": null
+    },
+    {
+     "tv": "PSE:BPI",
+     "symbol": "BPI",
+     "name": "Bank of the Philippine Islands",
+     "close": 99,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 3
+      }
+     ],
+     "best": 3,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": 0.81,
+     "earnings": null
+    },
+    {
+     "tv": "PSE:CBC",
+     "symbol": "CBC",
+     "name": "China Banking Corp",
+     "close": 48.05,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 3
+      }
+     ],
+     "best": 3,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": -0.03,
+     "earnings": null
+    },
+    {
+     "tv": "PSE:JFC",
+     "symbol": "JFC",
+     "name": "Jollibee Foods",
+     "close": 155,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 4
+      }
+     ],
+     "best": 4,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": 1.73,
+     "earnings": null
+    },
+    {
+     "tv": "PSE:LTG",
+     "symbol": "LTG",
+     "name": "LT Group",
+     "close": 15.4,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 4
+      }
+     ],
+     "best": 4,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": -0.46,
+     "earnings": "2026-11-12"
+    },
+    {
+     "tv": "PSE:SM",
+     "symbol": "SM",
+     "name": "SM Investments",
+     "close": 570,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 4
+      }
+     ],
+     "best": 4,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": 2.75,
+     "earnings": "2026-11-12"
+    },
+    {
+     "tv": "PSE:MBT",
+     "symbol": "MBT",
+     "name": "Metropolitan Bank & Trust",
+     "close": 61,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 5
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 5
+      }
+     ],
+     "best": 5,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 0.35,
+     "earnings": null
+    },
+    {
+     "tv": "PSE:URC",
+     "symbol": "URC",
+     "name": "Universal Robina",
+     "close": 62.2,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 6
+      }
+     ],
+     "best": 6,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": 2.92,
+     "earnings": null
+    },
+    {
+     "tv": "PSE:GTCAP",
+     "symbol": "GTCAP",
+     "name": "GT Capital Holdings",
+     "close": 459.6,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 7
+      }
+     ],
+     "best": 7,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": 3.29,
+     "earnings": "2026-11-12"
+    }
+   ]
+  }
+ }
+}
