@@ -154,8 +154,8 @@ def run_scan(inp):
 
 # ---------------------------------------------------------------- site
 CSS = """
-:root{--bg:#fff;--fg:#1a1d21;--mut:#5b6470;--line:#e3e6ea;--card:#f6f8fa;--acc:#0b6b4f;--warn:#9a5b00}
-@media(prefers-color-scheme:dark){:root{--bg:#0f1317;--fg:#e8ebee;--mut:#9aa4af;--line:#262d35;--card:#171d23;--acc:#4cc59b;--warn:#e0a84a}}
+:root{--bg:#fff;--fg:#1a1d21;--mut:#5b6470;--line:#e3e6ea;--card:#f6f8fa;--acc:#0b6b4f;--warn:#9a5b00;--red:#c62828}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1317;--fg:#e8ebee;--mut:#9aa4af;--line:#262d35;--card:#171d23;--acc:#4cc59b;--warn:#e0a84a;--red:#ff6b6b}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
 main{max-width:960px;margin:0 auto;padding:28px 18px 60px}
 h1{font-size:1.6rem;margin:0 0 4px}h2{font-size:1.25rem;margin:34px 0 6px}h3{font-size:1rem;margin:20px 0 6px}
@@ -165,12 +165,12 @@ table{width:100%;border-collapse:collapse;margin:6px 0 4px;font-size:.95rem}
 th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 th{font-weight:600;color:var(--mut);font-size:.82rem;text-transform:uppercase;letter-spacing:.03em}
 a{color:var(--acc)}.tag{display:inline-block;border:1px solid var(--line);border-radius:6px;padding:1px 7px;margin:1px 4px 1px 0;font-size:.85rem}
-.up{color:var(--acc)}.warn{color:var(--warn)}
+.up{color:var(--acc)}.dn{color:var(--red)}.warn{color:var(--warn)}
 .wrap{overflow-x:auto}
 tr.f td{padding:4px 10px 10px;border-bottom:1px solid var(--line)}
 .fl{display:flex;flex-wrap:wrap;gap:4px 6px;font-size:.82rem}
 .fl>span{border:1px solid var(--line);border-radius:6px;padding:1px 7px;background:var(--card);white-space:nowrap}
-.fl .g{color:var(--acc)}.fl .r{color:var(--warn)}.fl .k{color:var(--mut)}.fl>span>.k{margin-right:2px}
+.fl .g{color:var(--acc)}.fl .r{color:var(--red)}.fl .k{color:var(--mut)}.fl>span>.k{margin-right:2px}
 .tabs{display:flex;gap:8px;margin:18px 0 4px;position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0;border-bottom:1px solid var(--line)}
 .tabs button{flex:1;font:inherit;font-weight:600;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;min-height:44px}
 .tabs button[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:var(--bg)}
@@ -261,13 +261,13 @@ def table(rows, scan_date=None):
     for r in rows:
         link = "https://www.tradingview.com/chart/?symbol=" + r["tv"].replace(":", "%3A")
         sig = "".join(f'<span class="tag">{html.escape(s["type"])} &middot; {bars_txt(s["bars_ago"])}</span>' for s in r["signals"])
-        vs = '<span class="up">Above</span>' if r["above_hma"] else "Below"
+        vs = '<span class="up">Above</span>' if r["above_hma"] else '<span class="dn">Below</span>'
         e = f'<span class="warn">{html.escape(r["earnings"])}</span>' if r["earnings"] else "&ndash;"
         t.append(
             f'<tr class="s"><td><a href="{link}" target="_blank" rel="noopener">{html.escape(r["symbol"])}</a>'
             f'<br><span class="mut small">{html.escape(r["name"])}</span></td>'
             f"<td class=\"sg\" data-l=\"Signals\">{sig}</td><td data-l=\"Price vs HMA 26\">{vs}</td>"
-            f"<td data-l=\"9 vs 26 SMA\">{r['gap_pct']:+.2f}%</td><td data-l=\"Earnings\">{e}</td></tr>")
+            f"<td data-l=\"9 vs 26 SMA\"><span class=\"{'up' if r['gap_pct'] > 0 else ('dn' if r['gap_pct'] < 0 else '')}\">{r['gap_pct']:+.2f}%</span></td><td data-l=\"Earnings\">{e}</td></tr>")
         t.append(fund_html(r.get("fund"), scan_date) if scan_date else "")
     t.append("</table></div>")
     return "".join(t)
