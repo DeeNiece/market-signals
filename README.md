@@ -9,3 +9,11 @@ Twice-weekly bullish signal scan of PSEi and HSI stocks on the D1 chart. Publish
 - `data/scans/` keeps the result of every scan.
 
 This is a signal list for reference, not investment advice.
+
+## Scan procedure (for the scheduled run)
+
+1. Read `data/universe.json` (PSEi 30 stocks, HSI top 50 by trading value).
+2. For each stock, pull about 47 daily bars from TradingView (interval 1D, format columns). Drop the last bar if it is dated today and the market has not closed (PSE closes 15:30, HKEX 16:00, Hong Kong time).
+3. Get earnings dates from the TradingView earnings calendar for the next 14 days.
+4. Write an input file in the format described at the top of `scripts/run.py` and run `python3 scripts/run.py <input.json>`.
+5. Commit `index.html`, `archive/`, `data/` and push to `main`.

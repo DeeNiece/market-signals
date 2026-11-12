@@ -1,0 +1,412 @@
+{
+ "PSEi": {
+  "label": "PSEi (30 stocks)",
+  "stocks": [
+   {
+    "tv": "PSE:ICT",
+    "symbol": "ICT",
+    "name": "International Container Terminal Services"
+   },
+   {
+    "tv": "PSE:SM",
+    "symbol": "SM",
+    "name": "SM Investments"
+   },
+   {
+    "tv": "PSE:BDO",
+    "symbol": "BDO",
+    "name": "BDO Unibank"
+   },
+   {
+    "tv": "PSE:BPI",
+    "symbol": "BPI",
+    "name": "Bank of the Philippine Islands"
+   },
+   {
+    "tv": "PSE:MER",
+    "symbol": "MER",
+    "name": "Manila Electric"
+   },
+   {
+    "tv": "PSE:SMPH",
+    "symbol": "SMPH",
+    "name": "SM Prime Holdings"
+   },
+   {
+    "tv": "PSE:AC",
+    "symbol": "AC",
+    "name": "Ayala Corp"
+   },
+   {
+    "tv": "PSE:MBT",
+    "symbol": "MBT",
+    "name": "Metropolitan Bank & Trust"
+   },
+   {
+    "tv": "PSE:TEL",
+    "symbol": "TEL",
+    "name": "PLDT"
+   },
+   {
+    "tv": "PSE:EMI",
+    "symbol": "EMI",
+    "name": "Emperador"
+   },
+   {
+    "tv": "PSE:ALI",
+    "symbol": "ALI",
+    "name": "Ayala Land"
+   },
+   {
+    "tv": "PSE:GLO",
+    "symbol": "GLO",
+    "name": "Globe Telecom"
+   },
+   {
+    "tv": "PSE:AEV",
+    "symbol": "AEV",
+    "name": "Aboitiz Equity Ventures"
+   },
+   {
+    "tv": "PSE:JFC",
+    "symbol": "JFC",
+    "name": "Jollibee Foods"
+   },
+   {
+    "tv": "PSE:LTG",
+    "symbol": "LTG",
+    "name": "LT Group"
+   },
+   {
+    "tv": "PSE:SMC",
+    "symbol": "SMC",
+    "name": "San Miguel Corp"
+   },
+   {
+    "tv": "PSE:AREIT",
+    "symbol": "AREIT",
+    "name": "AREIT"
+   },
+   {
+    "tv": "PSE:CBC",
+    "symbol": "CBC",
+    "name": "China Banking Corp"
+   },
+   {
+    "tv": "PSE:JGS",
+    "symbol": "JGS",
+    "name": "JG Summit Holdings"
+   },
+   {
+    "tv": "PSE:URC",
+    "symbol": "URC",
+    "name": "Universal Robina"
+   },
+   {
+    "tv": "PSE:RCR",
+    "symbol": "RCR",
+    "name": "RL Commercial REIT"
+   },
+   {
+    "tv": "PSE:MYNLD",
+    "symbol": "MYNLD",
+    "name": "Maynilad Water Services"
+   },
+   {
+    "tv": "PSE:PGOLD",
+    "symbol": "PGOLD",
+    "name": "Puregold Price Club"
+   },
+   {
+    "tv": "PSE:MONDE",
+    "symbol": "MONDE",
+    "name": "Monde Nissin"
+   },
+   {
+    "tv": "PSE:ACEN",
+    "symbol": "ACEN",
+    "name": "ACEN Corp"
+   },
+   {
+    "tv": "PSE:CNPF",
+    "symbol": "CNPF",
+    "name": "Century Pacific Food"
+   },
+   {
+    "tv": "PSE:GTCAP",
+    "symbol": "GTCAP",
+    "name": "GT Capital Holdings"
+   },
+   {
+    "tv": "PSE:DMC",
+    "symbol": "DMC",
+    "name": "DMCI Holdings"
+   },
+   {
+    "tv": "PSE:SCC",
+    "symbol": "SCC",
+    "name": "Semirara Mining & Power"
+   },
+   {
+    "tv": "PSE:PLUS",
+    "symbol": "PLUS",
+    "name": "DigiPlus Interactive"
+   }
+  ]
+ },
+ "HSI": {
+  "label": "Hang Seng Index constituents, top 50 by 30-day value traded",
+  "stocks": [
+   {
+    "tv": "HKEX:700",
+    "symbol": "700",
+    "name": "Tencent"
+   },
+   {
+    "tv": "HKEX:9988",
+    "symbol": "9988",
+    "name": "Alibaba"
+   },
+   {
+    "tv": "HKEX:1810",
+    "symbol": "1810",
+    "name": "Xiaomi"
+   },
+   {
+    "tv": "HKEX:981",
+    "symbol": "981",
+    "name": "SMIC"
+   },
+   {
+    "tv": "HKEX:992",
+    "symbol": "992",
+    "name": "Lenovo"
+   },
+   {
+    "tv": "HKEX:3690",
+    "symbol": "3690",
+    "name": "Meituan"
+   },
+   {
+    "tv": "HKEX:1347",
+    "symbol": "1347",
+    "name": "Hua Hong Semiconductor"
+   },
+   {
+    "tv": "HKEX:1299",
+    "symbol": "1299",
+    "name": "AIA"
+   },
+   {
+    "tv": "HKEX:939",
+    "symbol": "939",
+    "name": "China Construction Bank"
+   },
+   {
+    "tv": "HKEX:5",
+    "symbol": "5",
+    "name": "HSBC"
+   },
+   {
+    "tv": "HKEX:883",
+    "symbol": "883",
+    "name": "CNOOC"
+   },
+   {
+    "tv": "HKEX:3750",
+    "symbol": "3750",
+    "name": "CATL"
+   },
+   {
+    "tv": "HKEX:2269",
+    "symbol": "2269",
+    "name": "WuXi Biologics"
+   },
+   {
+    "tv": "HKEX:2318",
+    "symbol": "2318",
+    "name": "Ping An"
+   },
+   {
+    "tv": "HKEX:1398",
+    "symbol": "1398",
+    "name": "ICBC"
+   },
+   {
+    "tv": "HKEX:1211",
+    "symbol": "1211",
+    "name": "BYD"
+   },
+   {
+    "tv": "HKEX:2359",
+    "symbol": "2359",
+    "name": "WuXi AppTec"
+   },
+   {
+    "tv": "HKEX:2628",
+    "symbol": "2628",
+    "name": "China Life"
+   },
+   {
+    "tv": "HKEX:2899",
+    "symbol": "2899",
+    "name": "Zijin Mining"
+   },
+   {
+    "tv": "HKEX:9999",
+    "symbol": "9999",
+    "name": "NetEase"
+   },
+   {
+    "tv": "HKEX:388",
+    "symbol": "388",
+    "name": "HKEX"
+   },
+   {
+    "tv": "HKEX:9992",
+    "symbol": "9992",
+    "name": "Pop Mart"
+   },
+   {
+    "tv": "HKEX:941",
+    "symbol": "941",
+    "name": "China Mobile"
+   },
+   {
+    "tv": "HKEX:3988",
+    "symbol": "3988",
+    "name": "Bank of China"
+   },
+   {
+    "tv": "HKEX:1024",
+    "symbol": "1024",
+    "name": "Kuaishou"
+   },
+   {
+    "tv": "HKEX:857",
+    "symbol": "857",
+    "name": "PetroChina"
+   },
+   {
+    "tv": "HKEX:1801",
+    "symbol": "1801",
+    "name": "Innovent Biologics"
+   },
+   {
+    "tv": "HKEX:9888",
+    "symbol": "9888",
+    "name": "Baidu"
+   },
+   {
+    "tv": "HKEX:9618",
+    "symbol": "9618",
+    "name": "JD.com"
+   },
+   {
+    "tv": "HKEX:6160",
+    "symbol": "6160",
+    "name": "BeOne Medicines"
+   },
+   {
+    "tv": "HKEX:9961",
+    "symbol": "9961",
+    "name": "Trip.com"
+   },
+   {
+    "tv": "HKEX:669",
+    "symbol": "669",
+    "name": "Techtronic"
+   },
+   {
+    "tv": "HKEX:2020",
+    "symbol": "2020",
+    "name": "ANTA Sports"
+   },
+   {
+    "tv": "HKEX:1378",
+    "symbol": "1378",
+    "name": "China Hongqiao"
+   },
+   {
+    "tv": "HKEX:1093",
+    "symbol": "1093",
+    "name": "CSPC Pharmaceutical"
+   },
+   {
+    "tv": "HKEX:3968",
+    "symbol": "3968",
+    "name": "China Merchants Bank"
+   },
+   {
+    "tv": "HKEX:2388",
+    "symbol": "2388",
+    "name": "BOC Hong Kong"
+   },
+   {
+    "tv": "HKEX:175",
+    "symbol": "175",
+    "name": "Geely Automobile"
+   },
+   {
+    "tv": "HKEX:1088",
+    "symbol": "1088",
+    "name": "China Shenhua"
+   },
+   {
+    "tv": "HKEX:386",
+    "symbol": "386",
+    "name": "Sinopec"
+   },
+   {
+    "tv": "HKEX:300",
+    "symbol": "300",
+    "name": "Midea Group"
+   },
+   {
+    "tv": "HKEX:2338",
+    "symbol": "2338",
+    "name": "Weichai Power"
+   },
+   {
+    "tv": "HKEX:1109",
+    "symbol": "1109",
+    "name": "China Resources Land"
+   },
+   {
+    "tv": "HKEX:16",
+    "symbol": "16",
+    "name": "Sun Hung Kai Properties"
+   },
+   {
+    "tv": "HKEX:27",
+    "symbol": "27",
+    "name": "Galaxy Entertainment"
+   },
+   {
+    "tv": "HKEX:3993",
+    "symbol": "3993",
+    "name": "CMOC Group"
+   },
+   {
+    "tv": "HKEX:2382",
+    "symbol": "2382",
+    "name": "Sunny Optical"
+   },
+   {
+    "tv": "HKEX:2319",
+    "symbol": "2319",
+    "name": "Mengniu Dairy"
+   },
+   {
+    "tv": "HKEX:1",
+    "symbol": "1",
+    "name": "CK Hutchison"
+   },
+   {
+    "tv": "HKEX:1177",
+    "symbol": "1177",
+    "name": "Sino Biopharmaceutical"
+   }
+  ]
+ }
+}
