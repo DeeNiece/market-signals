@@ -142,7 +142,34 @@ th{font-weight:600;color:var(--mut);font-size:.82rem;text-transform:uppercase;le
 a{color:var(--acc)}.tag{display:inline-block;border:1px solid var(--line);border-radius:6px;padding:1px 7px;margin:1px 4px 1px 0;font-size:.85rem}
 .up{color:var(--acc)}.warn{color:var(--warn)}
 .wrap{overflow-x:auto}
+.tabs{display:flex;gap:8px;margin:18px 0 4px;position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0;border-bottom:1px solid var(--line)}
+.tabs button{flex:1;font:inherit;font-weight:600;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;min-height:44px}
+.tabs button[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:var(--bg)}
+.tabs .n{font-weight:400;font-size:.85rem;opacity:.85;display:block}
+.js .panel{display:none}.js .panel.on{display:block}
+@media(max-width:640px){
+main{padding:16px 12px 48px}h1{font-size:1.35rem}h2{font-size:1.1rem}
+table,tbody,tr,td{display:block;width:100%}
+table tr:first-child{display:none}
+tr{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:8px 12px;margin:10px 0}
+td{border:0;padding:3px 0;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+td:first-child{display:block;font-size:1.05rem;font-weight:600;padding-bottom:6px}
+td[data-l]::before{content:attr(data-l);color:var(--mut);font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;flex:none}
+td.sg{display:block}td.sg::before{display:block;margin-bottom:2px}
+}
 """
+
+
+TABJS = """<script>
+(function(){var d=document.documentElement;d.className+=' js';
+var b=document.querySelectorAll('.tabs button'),p=document.querySelectorAll('.panel');
+function show(i){for(var k=0;k<b.length;k++){var on=k==i;b[k].setAttribute('aria-selected',on);p[k].className='panel'+(on?' on':'');}
+try{history.replaceState(null,'','#'+b[i].textContent.split(/\\d/)[0].trim().toLowerCase())}catch(e){}}
+for(var k=0;k<b.length;k++)(function(k){b[k].onclick=function(){show(k)}})(k);
+var h=location.hash.slice(1).toLowerCase();
+for(var k=0;k<b.length;k++){if(b[k].textContent.toLowerCase().indexOf(h)==0&&h){show(k);break}}
+})();
+</script>"""
 
 
 def bars_txt(n):
@@ -165,7 +192,8 @@ def table(rows):
         t.append(
             f'<tr><td><a href="{link}" target="_blank" rel="noopener">{html.escape(r["symbol"])}</a>'
             f'<br><span class="mut small">{html.escape(r["name"])}</span></td>'
-            f"<td>{sig}</td><td>{vs}</td><td>{r['gap_pct']:+.2f}%</td><td>{e}</td></tr>")
+            f"<td class=\"sg\" data-l=\"Signals\">{sig}</td><td data-l=\"Price vs HMA 26\">{vs}</td>"
+            f"<td data-l=\"9 vs 26 SMA\">{r['gap_pct']:+.2f}%</td><td data-l=\"Earnings\">{e}</td></tr>")
     t.append("</table></div>")
     return "".join(t)
 
@@ -178,14 +206,21 @@ def page(scan, past, depth):
     parts.append('<p class="mut">Bullish signals on the daily (D1) chart, from closed candles only. Scanned every Tuesday and Friday after the close.</p>')
     parts.append(f'<div class="box"><b>Scan date: {fmt_date(scan["scan_date"])}</b> (data through that day\'s close)'
                  f'<br><span class="mut small">Generated {html.escape(scan.get("run_at", ""))}</span></div>')
-    for name, m in scan["markets"].items():
+    mk = list(scan["markets"].items())
+    parts.append('<div class="tabs" role="tablist">' + "".join(
+        f'<button role="tab" id="t{i}" data-t="{i}" aria-selected="{"true" if i == 0 else "false"}">{html.escape(name)}'
+        f'<span class="n">{sum(1 for r in m["rows"] if r["fresh"])} fresh &middot; {len(m["rows"])} total</span></button>'
+        for i, (name, m) in enumerate(mk)) + "</div>")
+    for i, (name, m) in enumerate(mk):
         fresh = [r for r in m["rows"] if r["fresh"]]
         older = [r for r in m["rows"] if not r["fresh"]]
+        parts.append(f'<section class="panel{" on" if i == 0 else ""}" id="p{i}" role="tabpanel">')
         parts.append(f"<h2>{html.escape(m['label'])}</h2>")
         parts.append(f'<p class="mut">Market breadth: {m["ma_bull"]} of {m["total"]} stocks have the 9 SMA above the 26 SMA. '
                      f'{m["hma_up"]} of {m["total"]} have a rising Hull MA 26.</p>')
         parts.append(f"<h3>Fresh signals (last {FRESH} candles)</h3>" + table(fresh))
         parts.append(f"<h3>Earlier signals ({FRESH + 1} to {WINDOW} candles ago)</h3>" + table(older))
+        parts.append("</section>")
     parts.append('<h2>How the signals work</h2><div class="box small">'
                  "<p><b>MA cross:</b> the simple 9-period average closes above the simple 26-period average, and is still above it at the latest close.</p>"
                  "<p><b>HMA turn:</b> the 26-period Hull MA stops falling and starts rising, and is still rising at the latest close. "
@@ -197,7 +232,7 @@ def page(scan, past, depth):
     parts.append("<h2>Past scans</h2><p>")
     links = [f'<a href="{up}archive/{s["scan_date"]}.html">{fmt_date(s["scan_date"])}</a>' for s in past]
     parts.append(" &middot; ".join(links) if links else "<span class='mut'>None yet.</span>")
-    parts.append("</p></main></body></html>")
+    parts.append("</p></main>" + TABJS + "</body></html>")
     return "".join(parts)
 
 
