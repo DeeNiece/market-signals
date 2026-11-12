@@ -15,5 +15,6 @@ This is a signal list for reference, not investment advice.
 1. Read `data/universe.json` (PSEi 30 stocks, HSI top 50 by trading value).
 2. For each stock, pull about 47 daily bars from TradingView (interval 1D, format columns). Drop the last bar if it is dated today and the market has not closed (PSE closes 15:30, HKEX 16:00, Hong Kong time).
 3. Get earnings dates from the TradingView earnings calendar for the next 14 days.
+3b. Fundamentals: call `mcp-tv-get-symbol-data-batch` (up to 50 symbols per call, so 2 calls for 80 stocks) with the columns `price_earnings_ttm, earnings_per_share_diluted_yoy_growth_ttm, total_revenue_yoy_growth_ttm, net_margin_ttm, dividends_yield_current, earnings_release_date, earnings_release_next_date, eps_surprise_percent_fq, revenue_surprise_percent_fq, sector`. Put each stock's returned values in its input entry as `"fund": {column: value, ...}` (raw values, null when missing). `run.py` formats them.
 4. Write an input file in the format described at the top of `scripts/run.py` and run `python3 scripts/run.py <input.json>`.
 5. Commit `index.html`, `archive/`, `data/` and push to `main`.

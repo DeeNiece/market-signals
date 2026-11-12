@@ -92,6 +92,30 @@ def analyse(closes):
     }
 
 
+HKT = dt.timezone(dt.timedelta(hours=8))
+FUND_KEYS = ["price_earnings_ttm", "earnings_per_share_diluted_yoy_growth_ttm", "total_revenue_yoy_growth_ttm",
+             "net_margin_ttm", "dividends_yield_current", "earnings_release_date", "earnings_release_next_date",
+             "eps_surprise_percent_fq", "revenue_surprise_percent_fq", "sector"]
+
+
+def _ts(v):
+    if not v:
+        return None
+    return dt.datetime.fromtimestamp(v, HKT).date().isoformat()
+
+
+def fund_clean(f):
+    """Raw TradingView columns in, small dict out (None when missing)."""
+    if not f:
+        return None
+    r = lambda k, n=1: None if f.get(k) is None else round(float(f[k]), n)
+    return {"pe": r("price_earnings_ttm"), "eps_yoy": r("earnings_per_share_diluted_yoy_growth_ttm"),
+            "rev_yoy": r("total_revenue_yoy_growth_ttm"), "margin": r("net_margin_ttm"),
+            "yield": r("dividends_yield_current"), "last": _ts(f.get("earnings_release_date")),
+            "next": _ts(f.get("earnings_release_next_date")), "eps_surp": r("eps_surprise_percent_fq"),
+            "rev_surp": r("revenue_surprise_percent_fq"), "sector": f.get("sector")}
+
+
 def run_scan(inp):
     scan_date = max(st["last_date"] for m in inp["markets"].values() for st in m["stocks"])
     d0 = dt.date.fromisoformat(scan_date)
@@ -118,6 +142,7 @@ def run_scan(inp):
                 "close": r["close"], "signals": r["signals"], "best": best,
                 "fresh": best < FRESH, "above_hma": r["above_hma"], "gap_pct": r["gap_pct"],
                 "earnings": e if soon else None,
+                "fund": fund_clean(st.get("fund")),
             })
         rows.sort(key=lambda x: (x["best"], -len(x["signals"]), x["symbol"]))
         out["markets"][name] = {
@@ -142,6 +167,10 @@ th{font-weight:600;color:var(--mut);font-size:.82rem;text-transform:uppercase;le
 a{color:var(--acc)}.tag{display:inline-block;border:1px solid var(--line);border-radius:6px;padding:1px 7px;margin:1px 4px 1px 0;font-size:.85rem}
 .up{color:var(--acc)}.warn{color:var(--warn)}
 .wrap{overflow-x:auto}
+tr.f td{padding:4px 10px 10px;border-bottom:1px solid var(--line)}
+.fl{display:flex;flex-wrap:wrap;gap:4px 6px;font-size:.82rem}
+.fl>span{border:1px solid var(--line);border-radius:6px;padding:1px 7px;background:var(--card);white-space:nowrap}
+.fl .g{color:var(--acc)}.fl .r{color:var(--warn)}.fl .k{color:var(--mut)}.fl>span>.k{margin-right:2px}
 .tabs{display:flex;gap:8px;margin:18px 0 4px;position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0;border-bottom:1px solid var(--line)}
 .tabs button{flex:1;font:inherit;font-weight:600;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;min-height:44px}
 .tabs button[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:var(--bg)}
@@ -152,6 +181,9 @@ main{padding:16px 12px 48px}h1{font-size:1.35rem}h2{font-size:1.1rem}
 table,tbody,tr,td{display:block;width:100%}
 table tr:first-child{display:none}
 tr{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:8px 12px;margin:10px 0}
+tr.s{margin-bottom:0;border-bottom:0;border-radius:10px 10px 0 0}
+tr.f{margin-top:0;border-top:0;border-radius:0 0 10px 10px;padding-top:0}
+tr.f td{border:0;padding:0 0 4px;display:block}
 td{border:0;padding:3px 0;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
 td:first-child{display:block;font-size:1.05rem;font-weight:600;padding-bottom:6px}
 td[data-l]::before{content:attr(data-l);color:var(--mut);font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;flex:none}
@@ -180,7 +212,49 @@ def fmt_date(s):
     return dt.date.fromisoformat(s).strftime("%a %d %b %Y")
 
 
-def table(rows):
+def _n(v, suf="%", plus=True, lim=300):
+    if v is None:
+        return None
+    if abs(v) > lim:
+        return "n/m"
+    return (f"{v:+.1f}" if plus else f"{v:.1f}") + suf
+
+
+def fund_html(f, scan_date):
+    if not f:
+        return ""
+    ch = []
+
+    def add(label, val, cls=""):
+        if val is not None:
+            ch.append(f'<span class="{cls}"><span class="k">{label}</span> {val}</span>'.replace('<span class="">', "<span>"))
+
+    def tone(v):
+        return "" if v is None else ("g" if v > 0 else ("r" if v < 0 else ""))
+
+    last = f.get("last")
+    if last:
+        recent = (dt.date.fromisoformat(scan_date) - dt.date.fromisoformat(last)).days <= 21
+        ch.append(f'<span class="{"g" if recent else ""}"><span class="k">Last report</span> {fmt_short(last)}{" (new)" if recent else ""}</span>')
+    add("EPS vs est.", _n(f.get("eps_surp"), lim=200), tone(f.get("eps_surp")))
+    add("Revenue vs est.", _n(f.get("rev_surp"), lim=200), tone(f.get("rev_surp")))
+    add("Revenue 12m", _n(f.get("rev_yoy")), tone(f.get("rev_yoy")))
+    add("EPS 12m", _n(f.get("eps_yoy")), tone(f.get("eps_yoy")))
+    add("Net margin", _n(f.get("margin"), plus=False))
+    add("P/E", None if f.get("pe") is None else f'{f["pe"]:.1f}')
+    add("Yield", None if not f.get("yield") else f'{f["yield"]:.1f}%')
+    if f.get("next"):
+        add("Next report", fmt_short(f["next"]))
+    if f.get("sector"):
+        ch.append(f'<span class="k">{html.escape(f["sector"])}</span>')
+    return f'<tr class="f"><td colspan="5"><div class="fl">{"".join(ch)}</div></td></tr>'
+
+
+def fmt_short(s):
+    return dt.date.fromisoformat(s).strftime("%d %b %Y")
+
+
+def table(rows, scan_date=None):
     if not rows:
         return '<p class="mut">None.</p>'
     t = ['<div class="wrap"><table><tr><th>Stock</th><th>Signals</th><th>Price vs HMA 26</th><th>9 vs 26 SMA</th><th>Earnings</th></tr>']
@@ -190,10 +264,11 @@ def table(rows):
         vs = '<span class="up">Above</span>' if r["above_hma"] else "Below"
         e = f'<span class="warn">{html.escape(r["earnings"])}</span>' if r["earnings"] else "&ndash;"
         t.append(
-            f'<tr><td><a href="{link}" target="_blank" rel="noopener">{html.escape(r["symbol"])}</a>'
+            f'<tr class="s"><td><a href="{link}" target="_blank" rel="noopener">{html.escape(r["symbol"])}</a>'
             f'<br><span class="mut small">{html.escape(r["name"])}</span></td>'
             f"<td class=\"sg\" data-l=\"Signals\">{sig}</td><td data-l=\"Price vs HMA 26\">{vs}</td>"
             f"<td data-l=\"9 vs 26 SMA\">{r['gap_pct']:+.2f}%</td><td data-l=\"Earnings\">{e}</td></tr>")
+        t.append(fund_html(r.get("fund"), scan_date) if scan_date else "")
     t.append("</table></div>")
     return "".join(t)
 
@@ -218,8 +293,8 @@ def page(scan, past, depth):
         parts.append(f"<h2>{html.escape(m['label'])}</h2>")
         parts.append(f'<p class="mut">Market breadth: {m["ma_bull"]} of {m["total"]} stocks have the 9 SMA above the 26 SMA. '
                      f'{m["hma_up"]} of {m["total"]} have a rising Hull MA 26.</p>')
-        parts.append(f"<h3>Fresh signals (last {FRESH} candles)</h3>" + table(fresh))
-        parts.append(f"<h3>Earlier signals ({FRESH + 1} to {WINDOW} candles ago)</h3>" + table(older))
+        parts.append(f"<h3>Fresh signals (last {FRESH} candles)</h3>" + table(fresh, scan["scan_date"]))
+        parts.append(f"<h3>Earlier signals ({FRESH + 1} to {WINDOW} candles ago)</h3>" + table(older, scan["scan_date"]))
         parts.append("</section>")
     parts.append('<h2>How the signals work</h2><div class="box small">'
                  "<p><b>MA cross:</b> the simple 9-period average closes above the simple 26-period average, and is still above it at the latest close.</p>"
@@ -227,6 +302,9 @@ def page(scan, past, depth):
                  "No minimum size is applied, so a turn on a flat line can be weak.</p>"
                  "<p><b>Price vs HMA 26:</b> whether the latest close is above the Hull MA. <b>9 vs 26 SMA:</b> the gap between the two averages.</p>"
                  "<p><b>Earnings:</b> shown only when results are due within 7 days of the scan date, because signals around earnings are less reliable.</p>"
+                 "<p><b>Fundamentals line:</b> numbers from TradingView. EPS and revenue vs est. compare the last report with analyst estimates. "
+                 "Revenue 12m and EPS 12m are growth over the last twelve months. n/m means not meaningful (a tiny base gives huge percentages). "
+                 "Data can lag a day or two after a company reports, and is shown for reference only.</p>"
                  "<p>Averages are calculated from TradingView daily closes. TradingView's own indicators may differ slightly. "
                  "This page is a signal list for reference, not investment advice.</p></div>")
     parts.append("<h2>Past scans</h2><p>")
