@@ -407,9 +407,10 @@ window.addEventListener('pageshow',function(e){if(e.persisted)chk()});})();
 
 def page(scan, past, depth):
     scans_all = _scans_asc()
+    bid = html.escape(scan["scan_date"] + " " + scan.get("run_at", ""), quote=True)
     up = "../" * depth
     parts = [f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-             f"<meta http-equiv="Cache-Control" content="no-cache"><meta name="build" content="{html.escape(scan["scan_date"] + " " + scan.get("run_at", ""))}"><title>Market Signals: PSEi and HSI</title><style>{CSS}</style></head><body><main>"]
+             f"<meta http-equiv="Cache-Control" content="no-cache"><meta name="build" content="{bid}"><title>Market Signals: PSEi and HSI</title><style>{CSS}</style></head><body><main>"]
     parts.append("<h1>Market Signals: PSEi and HSI</h1>")
     parts.append('<p class="mut">Bullish signals on the daily (D1) chart, from closed candles only. Scanned every Tuesday and Friday after the close.</p>')
     parts.append(f'<div class="box"><b>Scan date: {fmt_date(scan["scan_date"])}</b> (data through that day\'s close)'
