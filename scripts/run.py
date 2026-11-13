@@ -396,11 +396,20 @@ def track_html(scans):
     return "".join(out)
 
 
+FRESHJS = """<script>
+(function(){function chk(){try{fetch(location.pathname+'?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){
+var m=t.match(/<meta name="build" content="([^"]*)"/),c=document.querySelector('meta[name=build]');
+if(m&&c&&m[1]!==c.content)location.reload()}).catch(function(){})}catch(e){}}
+chk();document.addEventListener('visibilitychange',function(){if(!document.hidden)chk()});
+window.addEventListener('pageshow',function(e){if(e.persisted)chk()});})();
+</script>"""
+
+
 def page(scan, past, depth):
     scans_all = _scans_asc()
     up = "../" * depth
     parts = [f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-             f"<title>Market Signals: PSEi and HSI</title><style>{CSS}</style></head><body><main>"]
+             f"<meta http-equiv="Cache-Control" content="no-cache"><meta name="build" content="{html.escape(scan["scan_date"] + " " + scan.get("run_at", ""))}"><title>Market Signals: PSEi and HSI</title><style>{CSS}</style></head><body><main>"]
     parts.append("<h1>Market Signals: PSEi and HSI</h1>")
     parts.append('<p class="mut">Bullish signals on the daily (D1) chart, from closed candles only. Scanned every Tuesday and Friday after the close.</p>')
     parts.append(f'<div class="box"><b>Scan date: {fmt_date(scan["scan_date"])}</b> (data through that day\'s close)'
@@ -437,7 +446,7 @@ def page(scan, past, depth):
     parts.append("<h2>Past scans</h2><p>")
     links = [f'<a href="{up}archive/{s["scan_date"]}.html">{fmt_date(s["scan_date"])}</a>' for s in past]
     parts.append(" &middot; ".join(links) if links else "<span class='mut'>None yet.</span>")
-    parts.append("</p></main>" + TABJS + "</body></html>")
+    parts.append("</p></main>" + TABJS + (FRESHJS if depth == 0 else "") + "</body></html>")
     return "".join(parts)
 
 
