@@ -193,6 +193,7 @@ td{border:0;padding:3px 0;display:flex;justify-content:space-between;gap:12px;al
 td:first-child{display:block;font-size:1.05rem;font-weight:600;padding-bottom:6px}
 td[data-l]::before{content:attr(data-l);color:var(--mut);font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;flex:none}
 td.sg{display:block}td.sg::before{display:block;margin-bottom:2px}
+table.tr td:first-child::before{display:none}
 }
 """
 
