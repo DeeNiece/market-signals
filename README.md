@@ -18,3 +18,6 @@ This is a signal list for reference, not investment advice.
 3b. Fundamentals: call `mcp-tv-get-symbol-data-batch` (up to 50 symbols per call, so 2 calls for 80 stocks) with the columns `price_earnings_ttm, earnings_per_share_diluted_yoy_growth_ttm, total_revenue_yoy_growth_ttm, net_margin_ttm, dividends_yield_current, earnings_release_date, earnings_release_next_date, eps_surprise_percent_fq, revenue_surprise_percent_fq, sector`. Put each stock's returned values in its input entry as `"fund": {column: value, ...}` (raw values, null when missing). `run.py` formats them.
 4. Write an input file in the format described at the top of `scripts/run.py` and run `python3 scripts/run.py <input.json>`.
 5. Commit `index.html`, `archive/`, `data/` and push to `main`.
+
+## Track record tab
+run.py builds a third tab from data/scans/*.json. Each scan file stores the last close of every stock (markets.<name>.prices), taken from the closes in the input, so no extra data calls are needed. A fresh signal is counted once, on the first scan where the stock is fresh. Returns are taken at the first later scan at least 7, 14 and 28 days after entry, and compared with the equal-weight average of all stocks in that market over the same dates. Do not delete old scan files.

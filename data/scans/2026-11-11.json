@@ -488,7 +488,39 @@
       "sector": "Consumer Durables"
      }
     }
-   ]
+   ],
+   "prices": {
+    "PSE:ICT": 780,
+    "PSE:SM": 570,
+    "PSE:BDO": 122.7,
+    "PSE:BPI": 99,
+    "PSE:MER": 446,
+    "PSE:SMPH": 17.4,
+    "PSE:AC": 560,
+    "PSE:MBT": 61,
+    "PSE:TEL": 1114,
+    "PSE:EMI": 15.18,
+    "PSE:ALI": 15.34,
+    "PSE:GLO": 1454,
+    "PSE:AEV": 37.75,
+    "PSE:JFC": 155,
+    "PSE:LTG": 15.4,
+    "PSE:SMC": 63.4,
+    "PSE:AREIT": 35.6,
+    "PSE:CBC": 48.05,
+    "PSE:JGS": 17.5,
+    "PSE:URC": 62.2,
+    "PSE:RCR": 6.07,
+    "PSE:MYNLD": 17,
+    "PSE:PGOLD": 39.25,
+    "PSE:MONDE": 6.38,
+    "PSE:ACEN": 2.61,
+    "PSE:CNPF": 29.4,
+    "PSE:GTCAP": 459.6,
+    "PSE:DMC": 6.83,
+    "PSE:SCC": 11,
+    "PSE:PLUS": 5.87
+   }
   },
   "HSI": {
    "label": "Hang Seng Index constituents, top 50 by 30-day value traded",
@@ -1807,7 +1839,59 @@
       "sector": "Consumer Durables"
      }
     }
-   ]
+   ],
+   "prices": {
+    "HKEX:700": 409.6,
+    "HKEX:9988": 100.6,
+    "HKEX:1810": 30.1,
+    "HKEX:981": 49,
+    "HKEX:992": 19.57,
+    "HKEX:3690": 72.85,
+    "HKEX:1347": 75.15,
+    "HKEX:1299": 78.9,
+    "HKEX:939": 10.5,
+    "HKEX:5": 141.6,
+    "HKEX:883": 22.72,
+    "HKEX:3750": 387.4,
+    "HKEX:2269": 48.88,
+    "HKEX:2318": 52.65,
+    "HKEX:1398": 7.885,
+    "HKEX:1211": 69.2,
+    "HKEX:2359": 196.6,
+    "HKEX:2628": 24.38,
+    "HKEX:2899": 28.94,
+    "HKEX:9999": 196.9,
+    "HKEX:388": 383.6,
+    "HKEX:9992": 145,
+    "HKEX:941": 80.85,
+    "HKEX:3988": 6.215,
+    "HKEX:1024": 28.66,
+    "HKEX:857": 10.1,
+    "HKEX:1801": 86.8,
+    "HKEX:9888": 78.6,
+    "HKEX:9618": 111.1,
+    "HKEX:6160": 251.8,
+    "HKEX:9961": 342.8,
+    "HKEX:669": 144.1,
+    "HKEX:2020": 79.25,
+    "HKEX:1378": 19.9,
+    "HKEX:1093": 8.53,
+    "HKEX:3968": 54,
+    "HKEX:2388": 51.35,
+    "HKEX:175": 14.25,
+    "HKEX:1088": 43.02,
+    "HKEX:386": 4.73,
+    "HKEX:300": 100.8,
+    "HKEX:2338": 23.12,
+    "HKEX:1109": 31.38,
+    "HKEX:16": 113.1,
+    "HKEX:27": 34.62,
+    "HKEX:3993": 12.65,
+    "HKEX:2382": 65.9,
+    "HKEX:2319": 21.48,
+    "HKEX:1": 72.1,
+    "HKEX:1177": 5.535
+   }
   }
  }
 }

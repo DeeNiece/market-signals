@@ -463,7 +463,39 @@
       "sector": "Consumer Non-Durables"
      }
     }
-   ]
+   ],
+   "prices": {
+    "PSE:AC": 560,
+    "PSE:ACEN": 2.34,
+    "PSE:AEV": 37.7,
+    "PSE:ALI": 15.06,
+    "PSE:AREIT": 35.7,
+    "PSE:BDO": 123.3,
+    "PSE:BPI": 99.6,
+    "PSE:CBC": 50.4,
+    "PSE:CNPF": 28.4,
+    "PSE:DMC": 6.64,
+    "PSE:EMI": 15.16,
+    "PSE:GLO": 1445,
+    "PSE:GTCAP": 431.4,
+    "PSE:ICT": 747,
+    "PSE:JFC": 153.7,
+    "PSE:JGS": 17.62,
+    "PSE:LTG": 15.32,
+    "PSE:MBT": 61,
+    "PSE:MER": 415,
+    "PSE:MONDE": 6.3,
+    "PSE:MYNLD": 16.78,
+    "PSE:PGOLD": 40.5,
+    "PSE:PLUS": 6.03,
+    "PSE:RCR": 6,
+    "PSE:SCC": 10.4,
+    "PSE:SM": 558,
+    "PSE:SMC": 65,
+    "PSE:SMPH": 17.22,
+    "PSE:TEL": 1059,
+    "PSE:URC": 61.5
+   }
   },
   "HSI": {
    "label": "Hang Seng Index constituents, top 50 by 30-day value traded",
@@ -1658,7 +1690,59 @@
       "sector": "Consumer Durables"
      }
     }
-   ]
+   ],
+   "prices": {
+    "HKEX:1": 68.75,
+    "HKEX:1024": 25.92,
+    "HKEX:1088": 43.24,
+    "HKEX:1093": 8.03,
+    "HKEX:1109": 29.92,
+    "HKEX:1177": 5.56,
+    "HKEX:1211": 65,
+    "HKEX:1299": 77.75,
+    "HKEX:1347": 72.3,
+    "HKEX:1378": 19.44,
+    "HKEX:1398": 7.92,
+    "HKEX:16": 110.9,
+    "HKEX:175": 13.41,
+    "HKEX:1801": 84.75,
+    "HKEX:1810": 28.86,
+    "HKEX:2020": 79.1,
+    "HKEX:2269": 46.74,
+    "HKEX:2318": 51.6,
+    "HKEX:2319": 21.92,
+    "HKEX:2338": 22.18,
+    "HKEX:2359": 191.6,
+    "HKEX:2382": 65.85,
+    "HKEX:2388": 49.9,
+    "HKEX:2628": 23.16,
+    "HKEX:27": 33.42,
+    "HKEX:2899": 26.88,
+    "HKEX:300": 101.6,
+    "HKEX:3690": 69.8,
+    "HKEX:3750": 369.8,
+    "HKEX:386": 4.75,
+    "HKEX:388": 378.4,
+    "HKEX:3968": 53.95,
+    "HKEX:3988": 6.28,
+    "HKEX:3993": 11.48,
+    "HKEX:5": 139.9,
+    "HKEX:6160": 249.8,
+    "HKEX:669": 141.8,
+    "HKEX:700": 386.6,
+    "HKEX:857": 10.33,
+    "HKEX:883": 22.84,
+    "HKEX:939": 10.5,
+    "HKEX:941": 80.4,
+    "HKEX:9618": 107,
+    "HKEX:981": 48.52,
+    "HKEX:9888": 74.2,
+    "HKEX:992": 17.62,
+    "HKEX:9961": 336,
+    "HKEX:9988": 90.55,
+    "HKEX:9992": 142.1,
+    "HKEX:9999": 190.4
+   }
   }
  }
 }
