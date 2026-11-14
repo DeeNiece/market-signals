@@ -195,6 +195,19 @@ td[data-l]::before{content:attr(data-l);color:var(--mut);font-size:.8rem;text-tr
 td.sg{display:block}td.sg::before{display:block;margin-bottom:2px}
 table.tr td:first-child::before{display:none}
 }
+:root{--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#6250d6;--s6:#e87ba4;--sm:#8b95a1}
+@media(prefers-color-scheme:dark){:root{--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#9085e9;--s6:#d55181;--sm:#7d8791}}
+.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin:8px 0 6px}
+.chart{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.chart h3{margin:0 0 2px}.chart svg{width:100%;height:auto;display:block;margin-top:6px}
+.chart svg.dn-svg{max-width:210px;margin:6px auto 0}
+.chart .gr{stroke:var(--line);stroke-width:1}.chart .ax{stroke:var(--mut);stroke-width:1}
+.chart .tk{fill:var(--mut);font-size:11px}.chart .vl{fill:var(--fg);font-size:11px;font-weight:600}
+.chart .big{fill:var(--fg);font-size:15px;font-weight:700}.chart .cap{fill:var(--mut);font-size:9px}
+.lg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.85rem;margin:6px 0 0}
+.lg i,.vals i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.vals{list-style:none;margin:8px 0 0;padding:0;font-size:.9rem}
+.vals li{display:flex;align-items:center;padding:2px 0}.vals li span{flex:1}.vals b{font-weight:600}
 """
 
 
@@ -405,6 +418,254 @@ window.addEventListener('pageshow',function(e){if(e.persisted)chk()});})();
 </script>"""
 
 
+# ---------- Analysis tab: plain SVG charts (no libraries) ----------
+SER = ("var(--s1)", "var(--s2)", "var(--s3)")
+
+
+def _legend(items):
+    return '<div class="lg">' + "".join(
+        f'<span><i style="background:{c}"></i>{html.escape(n)}</span>' for n, c in items) + "</div>"
+
+
+def svg_donut(parts, centre, caption):
+    tot = sum(v for _, v, _ in parts)
+    if tot <= 0:
+        return '<p class="mut">No data yet.</p>'
+    r, C = 52, 2 * 3.14159265 * 52
+    nz = sum(1 for _, v, _ in parts if v > 0)
+    gap = 2 if nz > 1 else 0
+    cum, circles = 0.0, []
+    for n, v, c in parts:
+        if v <= 0:
+            continue
+        ln = v / tot * C
+        circles.append(f'<circle cx="80" cy="80" r="{r}" fill="none" stroke="{c}" stroke-width="22" '
+                       f'stroke-dasharray="{max(ln - gap, 0.5):.2f} {C:.2f}" stroke-dashoffset="{-cum:.2f}" '
+                       f'transform="rotate(-90 80 80)"><title>{html.escape(n)}: {v}</title></circle>')
+        cum += ln
+    label = "; ".join(f"{n} {v}" for n, v, _ in parts)
+    return (f'<svg viewBox="0 0 160 160" class="dn-svg" role="img" aria-label="{html.escape(caption)}: {html.escape(label)}">'
+            + "".join(circles)
+            + f'<text x="80" y="82" text-anchor="middle" class="big">{html.escape(str(centre))}</text>'
+            + f'<text x="80" y="100" text-anchor="middle" class="cap">{html.escape(caption)}</text></svg>'
+            + '<ul class="vals">' + "".join(
+                f'<li><i style="background:{c}"></i><span>{html.escape(n)}</span><b>{v}</b></li>' for n, v, c in parts) + "</ul>")
+
+
+def svg_cols(cats, series, unit="", signed=False):
+    """series: [(name, colour, [values per category or None])]"""
+    vals = [v for _, _, vs in series for v in vs if v is not None]
+    if not vals:
+        return '<p class="mut">Not enough data yet.</p>'
+    W, H, L, R, T, B = 360, 210, 40, 8, 22, 34
+    hi, lo = max(max(vals), 0), min(min(vals), 0)
+    if hi == lo:
+        hi = 1
+    pad = (hi - lo) * 0.15
+    hi, lo = (hi + pad if hi > 0 else 0), (lo - pad if lo < 0 else 0)
+    pw, ph = W - L - R, H - T - B
+
+    def y(v):
+        return T + (hi - v) / (hi - lo) * ph
+    gw = pw / len(cats)
+    bw = min(34, gw * 0.7 / len(series))
+    out = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Column chart: '
+           + html.escape("; ".join(f"{n} " + ", ".join(f"{c} {v}" for c, v in zip(cats, vs) if v is not None) for n, _, vs in series))
+           + '">']
+    for t in sorted({lo, 0, hi}):
+        tl = "0" + unit if t == 0 else (f"{t:+.1f}{unit}" if signed else f"{t:.0f}{unit}")
+        out.append(f'<line x1="{L}" x2="{W - R}" y1="{y(t):.1f}" y2="{y(t):.1f}" class="{"ax" if t == 0 else "gr"}"/>'
+                   f'<text x="{L - 5}" y="{y(t) + 4:.1f}" text-anchor="end" class="tk">{tl}</text>')
+    for i, cname in enumerate(cats):
+        gx = L + i * gw + gw / 2
+        x0 = gx - bw * len(series) / 2
+        for j, (n, c, vs) in enumerate(series):
+            v = vs[i]
+            if v is None:
+                continue
+            top, bot = (y(v), y(0)) if v >= 0 else (y(0), y(v))
+            h = max(bot - top, 1.5)
+            lab = f"{v:+.1f}{unit}" if signed else f"{v:g}{unit}"
+            ty = top - 4 if v >= 0 else bot + 12
+            out.append(f'<rect x="{x0 + j * bw + 1:.1f}" y="{top:.1f}" width="{bw - 2:.1f}" height="{h:.1f}" rx="3" fill="{c}">'
+                       f'<title>{html.escape(n)} / {html.escape(cname)}: {lab}</title></rect>'
+                       f'<text x="{x0 + j * bw + bw / 2:.1f}" y="{ty:.1f}" text-anchor="middle" class="vl">{lab}</text>')
+        out.append(f'<text x="{gx:.1f}" y="{H - 14}" text-anchor="middle" class="tk">{html.escape(cname)}</text>')
+    out.append("</svg>")
+    return "".join(out)
+
+
+def svg_lines(xl, series, ymax=100, unit="%"):
+    if not xl or not any(v is not None for _, _, vs in series for v in vs):
+        return '<p class="mut">Not enough data yet.</p>'
+    W, H, L, R, T, B = 360, 200, 40, 16, 16, 30
+    pw, ph = W - L - R, H - T - B
+
+    def x(i):
+        return L + (pw / 2 if len(xl) == 1 else i * pw / (len(xl) - 1))
+
+    def y(v):
+        return T + (ymax - v) / ymax * ph
+    out = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Line chart: '
+           + html.escape("; ".join(f"{n} " + ", ".join(f"{a} {v:g}{unit}" for a, v in zip(xl, vs) if v is not None) for n, _, vs in series)) + '">']
+    for t in (0, ymax / 2, ymax):
+        out.append(f'<line x1="{L}" x2="{W - R}" y1="{y(t):.1f}" y2="{y(t):.1f}" class="{"ax" if t == 0 else "gr"}"/>'
+                   f'<text x="{L - 5}" y="{y(t) + 4:.1f}" text-anchor="end" class="tk">{t:.0f}{unit}</text>')
+    for i, a in enumerate(xl):
+        out.append(f'<text x="{x(i):.1f}" y="{H - 10}" text-anchor="middle" class="tk">{html.escape(a)}</text>')
+    for k, (n, c, vs) in enumerate(series):
+        pts = [(x(i), y(v), v, xl[i]) for i, v in enumerate(vs) if v is not None]
+        if len(pts) > 1:
+            out.append(f'<polyline points="{" ".join(f"{a:.1f},{b:.1f}" for a, b, _, _ in pts)}" fill="none" stroke="{c}" stroke-width="2" '
+                       f'stroke-linejoin="round" stroke-linecap="round"/>')
+        for a, b, v, xa in pts:
+            out.append(f'<circle cx="{a:.1f}" cy="{b:.1f}" r="4" fill="{c}" stroke="var(--card)" stroke-width="2"><title>{html.escape(n)} {html.escape(xa)}: {v:g}{unit}</title></circle>')
+        a, b, v, _ = pts[-1]
+        out.append(f'<text x="{a:.1f}" y="{b - 9 - 11 * (k % 2):.1f}" text-anchor="end" class="vl">{v:g}{unit}</text>')
+    out.append("</svg>")
+    return "".join(out)
+
+
+def svg_hbars(items, colour):
+    if not items:
+        return '<p class="mut">No signals yet.</p>'
+    W, rowh, L = 360, 24, 150
+    mx = max(v for _, v in items)
+    H = rowh * len(items) + 6
+    out = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Signals by sector: '
+           + html.escape(", ".join(f"{n} {v}" for n, v in items)) + '">']
+    for i, (n, v) in enumerate(items):
+        yy = 3 + i * rowh
+        w = (W - L - 30) * v / mx
+        out.append(f'<text x="{L - 8}" y="{yy + 16}" text-anchor="end" class="tk">{html.escape(n[:22])}</text>'
+                   f'<rect x="{L}" y="{yy + 4}" width="{w:.1f}" height="14" rx="3" fill="{colour}"><title>{html.escape(n)}: {v}</title></rect>'
+                   f'<text x="{L + w + 5:.1f}" y="{yy + 16}" class="vl">{v}</text>')
+    out.append("</svg>")
+    return "".join(out)
+
+
+def _chart(title, desc, body, legend=""):
+    return f'<div class="chart"><h3>{html.escape(title)}</h3><p class="mut small">{html.escape(desc)}</p>{legend}{body}</div>'
+
+
+def analysis_html(scans):
+    if not scans:
+        return ""
+    latest = scans[-1]
+    mks = list(dict.fromkeys(k for s in scans for k in s["markets"]))
+    mcol = {k: SER[i % len(SER)] for i, k in enumerate(mks)}
+    tr = track_record(scans)
+    xl = [dt.date.fromisoformat(s["scan_date"]).strftime("%d %b").lstrip("0") for s in scans]
+    out = ["<h2>Analysis</h2>",
+           f'<p class="mut">Charts built from all {len(scans)} scan{"s" if len(scans) != 1 else ""} so far. '
+           "With few scans the charts are thin. They fill in as more scans arrive.</p>"]
+
+    # 1 Win ratio
+    cards = []
+    for mk in mks:
+        ev = [e for e in tr.get(mk, []) if "latest" in e]
+        up = sum(1 for e in ev if e["latest"]["ret"] > 0)
+        dn = sum(1 for e in ev if e["latest"]["ret"] <= 0)
+        body = svg_donut([("Up since signal", up, "var(--acc)"), ("Down or flat", dn, "var(--red)")],
+                         f"{up} of {up + dn}" if up + dn else "-", "signals up")
+        cards.append(_chart(f"{mk}: win ratio", "Share of past signals that are above their entry price at the latest scan.", body))
+    out.append("<h3>1. Win ratio</h3>" + '<div class="charts">' + "".join(cards) + "</div>")
+
+    # 2 Performance vs market
+    ser_sig, ser_mkt = [], []
+    for mk in mks:
+        ev = [e["latest"] for e in tr.get(mk, []) if "latest" in e]
+        ser_sig.append(sum(e["ret"] for e in ev) / len(ev) if ev else None)
+        b = [e["bench"] for e in ev if e["bench"] is not None]
+        ser_mkt.append(sum(b) / len(b) if b else None)
+    body = svg_cols(mks, [("Signals", "var(--s5)", ser_sig), ("Market average", "var(--sm)", ser_mkt)], unit="%", signed=True)
+    out.append("<h3>2. Performance against the market</h3>" + '<div class="charts">' + _chart(
+        "Average return since signal", "Signals compared with the average of all stocks in the same market over the same days.",
+        body, _legend([("Signals", "var(--s5)"), ("Market average", "var(--sm)")])) + "</div>")
+
+    # 3 Return by horizon
+    cards = []
+    for mk in mks:
+        evs = tr.get(mk, [])
+        av = []
+        for h in HORIZONS:
+            d = [e["fw"][h]["ret"] for e in evs if h in e["fw"]]
+            av.append(sum(d) / len(d) if d else None)
+        bv = []
+        for h in HORIZONS:
+            d = [e["fw"][h]["bench"] for e in evs if h in e["fw"] and e["fw"][h]["bench"] is not None]
+            bv.append(sum(d) / len(d) if d else None)
+        body = svg_cols(["1 week", "2 weeks", "4 weeks"], [("Signals", mcol[mk], av), ("Market average", "var(--sm)", bv)], unit="%", signed=True)
+        lgd = _legend([("Signals", mcol[mk]), ("Market average", "var(--sm)")])
+        if all(v is None for v in av):
+            body, lgd = '<p class="mut">No signal is old enough yet. The first 1-week results come with the scan on 20 Nov.</p>', ""
+        cards.append(_chart(f"{mk}: return by holding time", "Average return after about 1, 2 and 4 weeks.", body, lgd))
+    out.append("<h3>3. Return by holding time</h3>" + '<div class="charts">' + "".join(cards) + "</div>")
+
+    # 4 Market breadth over time
+    cards = []
+    for mk in mks:
+        a, b = [], []
+        for s in scans:
+            m = s["markets"].get(mk)
+            a.append(round(m["ma_bull"] / m["total"] * 100) if m and m["total"] else None)
+            b.append(round(m["hma_up"] / m["total"] * 100) if m and m["total"] else None)
+        body = svg_lines(xl, [("9 SMA above 26 SMA", "var(--s3)", a), ("Hull MA rising", "var(--s6)", b)])
+        cards.append(_chart(f"{mk}: market breadth", "Share of stocks with the 9 SMA above the 26 SMA, and with a rising Hull MA 26. Higher means a broader uptrend.",
+                            body, _legend([("9 SMA above 26 SMA", "var(--s3)"), ("Hull MA rising", "var(--s6)")])))
+    out.append("<h3>4. Market breadth over time</h3>" + '<div class="charts">' + "".join(cards) + "</div>")
+
+    # 5 Signal count per scan
+    body = svg_cols(xl, [(mk, mcol[mk], [sum(1 for r in s["markets"].get(mk, {"rows": []})["rows"] if r["fresh"]) for s in scans]) for mk in mks])
+    out.append("<h3>5. Fresh signals per scan</h3>" + '<div class="charts">' + _chart(
+        "Fresh signals found", "A rising count means more stocks are turning up at the same time.", body,
+        _legend([(mk, mcol[mk]) for mk in mks])) + "</div>")
+
+    # 6 Where the market stands now (donuts) + signal types
+    cards = []
+    for mk in mks:
+        m = latest["markets"].get(mk)
+        if not m:
+            continue
+        fr = sum(1 for r in m["rows"] if r["fresh"])
+        old = len(m["rows"]) - fr
+        body = svg_donut([("Fresh signal", fr, "var(--s5)"), ("Earlier signal", old, "var(--s4)"), ("No signal", m["total"] - fr - old, "var(--sm)")],
+                         f"{fr + old} of {m['total']}", "have a signal")
+        cards.append(_chart(f"{mk}: stocks with a signal", f"Latest scan, {fmt_date(latest['scan_date'])}.", body))
+    out.append("<h3>6. Where the market stands now</h3>" + '<div class="charts">' + "".join(cards) + "</div>")
+
+    cats = ["MA cross only", "HMA turn only", "Both"]
+    sers = []
+    for mk in mks:
+        m = latest["markets"].get(mk, {"rows": []})
+        cnt = [0, 0, 0]
+        for r in m["rows"]:
+            t = {x["type"] for x in r["signals"]}
+            cnt[2 if len(t) > 1 else (0 if "MA cross" in t else 1)] += 1
+        sers.append((mk, mcol[mk], cnt))
+    out.append("<h3>7. Which signal fires</h3>" + '<div class="charts">' + _chart(
+        "Signal type", "Stocks with each type of signal at the latest scan (fresh and earlier). Both means the MA cross and the Hull MA turn.",
+        svg_cols(cats, sers), _legend([(mk, mcol[mk]) for mk in mks])) + "</div>")
+
+    # 8 Sectors
+    cards = []
+    for mk in mks:
+        m = latest["markets"].get(mk, {"rows": []})
+        cnt = {}
+        for r in m["rows"]:
+            sct = (r.get("fund") or {}).get("sector") or "Other"
+            cnt[sct] = cnt.get(sct, 0) + 1
+        items = sorted(cnt.items(), key=lambda kv: (-kv[1], kv[0]))[:7]
+        cards.append(_chart(f"{mk}: sectors with signals", "Where the signals cluster, latest scan.", svg_hbars(items, mcol[mk])))
+    out.append("<h3>8. Sectors</h3>" + '<div class="charts">' + "".join(cards) + "</div>")
+
+    out.append('<div class="box small"><p><b>How to read this tab:</b> win ratio and performance show if the signals made money after they appeared. '
+               "Breadth shows if the whole market is trending up, which helps judge if signals are working because of the market or on their own. "
+               "Early numbers swing a lot. Wait for many scans before drawing any conclusion. Prices only, no costs or dividends.</p></div>")
+    return "".join(out)
+
+
+
 def page(scan, past, depth):
     scans_all = _scans_asc()
     bid = html.escape(scan["scan_date"] + " " + scan.get("run_at", ""), quote=True)
@@ -421,7 +682,8 @@ def page(scan, past, depth):
         f'<span class="n">{sum(1 for r in m["rows"] if r["fresh"])} fresh &middot; {len(m["rows"])} total</span></button>'
         for i, (name, m) in enumerate(mk)) +
         f'<button role="tab" id="t{len(mk)}" data-t="{len(mk)}" aria-selected="false">Track record'
-        f'<span class="n">{len(scans_all)} scan{"s" if len(scans_all) != 1 else ""}</span></button></div>')
+        f'<span class="n">{len(scans_all)} scan{"s" if len(scans_all) != 1 else ""}</span></button>'
+        f'<button role="tab" id="t{len(mk) + 1}" data-t="{len(mk) + 1}" aria-selected="false">Analysis<span class="n">charts</span></button></div>')
     for i, (name, m) in enumerate(mk):
         fresh = [r for r in m["rows"] if r["fresh"]]
         older = [r for r in m["rows"] if not r["fresh"]]
@@ -433,6 +695,7 @@ def page(scan, past, depth):
         parts.append(f"<h3>Earlier signals ({FRESH + 1} to {WINDOW} candles ago)</h3>" + table(older, scan["scan_date"]))
         parts.append("</section>")
     parts.append(f'<section class="panel" id="p{len(mk)}" role="tabpanel">{track_html(scans_all)}</section>')
+    parts.append(f'<section class="panel" id="p{len(mk) + 1}" role="tabpanel">{analysis_html(scans_all)}</section>')
     parts.append('<h2>How the signals work</h2><div class="box small">'
                  "<p><b>MA cross:</b> the simple 9-period average closes above the simple 26-period average, and is still above it at the latest close.</p>"
                  "<p><b>HMA turn:</b> the 26-period Hull MA stops falling and starts rising, and is still rising at the latest close. "
