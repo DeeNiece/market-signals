@@ -25,6 +25,7 @@ Rules (all on closed daily candles):
 """
 import datetime as dt
 import glob
+import hashlib
 import html
 import json
 import os
@@ -185,7 +186,8 @@ table.tr td.up{color:var(--acc)}table.tr td.dn{color:var(--red)}
 .subtabs button[aria-selected=true]{border-color:var(--acc);color:var(--acc)}
 .subtabs .n{font-weight:400;font-size:.8rem;opacity:.85;display:block}
 .js .sp{display:none}.js .sp.on{display:block}
-table.tr th{position:sticky;top:var(--stack,0px);background:var(--bg);z-index:3}
+table th{position:sticky;top:var(--stack,0px);background:var(--bg);z-index:3;box-shadow:inset 0 -1px 0 var(--line)}
+@media(min-width:641px){.wrap{overflow-x:clip}}
 .js .panel{display:none}.js .panel.on{display:block}
 @media(max-width:640px){
 main{padding:16px 12px 48px}h1{font-size:1.35rem}h2{font-size:1.1rem}
@@ -689,7 +691,7 @@ H();addEventListener('resize',H);d.addEventListener('click',function(){setTimeou
 
 def page(scan, past, depth):
     scans_all = _scans_asc()
-    bid = html.escape(scan["scan_date"] + " " + scan.get("run_at", ""), quote=True)
+    bid = html.escape(scan["scan_date"] + " " + scan.get("run_at", "") + " " + hashlib.md5((CSS + TABJS + SUBJS).encode()).hexdigest()[:6], quote=True)
     up = "../" * depth
     parts = [f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
              f'<meta http-equiv="Cache-Control" content="no-cache"><meta name="build" content="{bid}"><title>Market Signals: PSEi and HSI</title><style>{CSS}</style></head><body><main>']
