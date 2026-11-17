@@ -180,6 +180,12 @@ tr.f td{padding:4px 10px 10px;border-bottom:1px solid var(--line)}
 .tabs button[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:var(--bg)}
 .tabs .n{font-weight:400;font-size:.85rem;opacity:.85;display:block}
 table.tr td.up{color:var(--acc)}table.tr td.dn{color:var(--red)}
+.subtabs{display:flex;gap:8px;position:sticky;top:var(--tabsh,0px);z-index:4;background:var(--bg);padding:8px 0;margin:6px 0 0;border-bottom:1px solid var(--line)}
+.subtabs button{flex:1;font:inherit;font-weight:600;font-size:.95rem;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer;min-height:44px}
+.subtabs button[aria-selected=true]{border-color:var(--acc);color:var(--acc)}
+.subtabs .n{font-weight:400;font-size:.8rem;opacity:.85;display:block}
+.js .sp{display:none}.js .sp.on{display:block}
+table.tr th{position:sticky;top:var(--stack,0px);background:var(--bg);z-index:3}
 .js .panel{display:none}.js .panel.on{display:block}
 @media(max-width:640px){
 main{padding:16px 12px 48px}h1{font-size:1.35rem}h2{font-size:1.1rem}
@@ -362,7 +368,12 @@ def track_html(scans):
     out = ["<h2>Track record</h2>",
            f'<p class="mut">Did fresh signals make money after the signal? {n_scans} scan{"s" if n_scans != 1 else ""} so far. '
            "Results are only meaningful after many signals and several months, so treat early numbers as a preview.</p>"]
-    for mk, events in tr.items():
+    out.append('<div class="subtabs" role="tablist">' + "".join(
+        f'<button role="tab" aria-selected="{"true" if i == 0 else "false"}">{html.escape(mk)}'
+        f'<span class="n">{len(ev)} signal{"s" if len(ev) != 1 else ""}</span></button>'
+        for i, (mk, ev) in enumerate(tr.items())) + "</div>")
+    for i, (mk, events) in enumerate(tr.items()):
+        out.append(f'<div class="sp{" on" if i == 0 else ""}">')
         out.append(f"<h3>{html.escape(mk)}</h3>")
         out.append(f'<p class="mut small">{len(events)} fresh signal{"s" if len(events) != 1 else ""} recorded.</p>')
         rows = []
@@ -402,6 +413,7 @@ def track_html(scans):
                        '<th>Return</th><th>Market avg</th></tr>' + "".join(body) + "</table>")
         else:
             out.append('<p class="mut">No signal has a later price yet. The first returns appear after the next scan.</p>')
+        out.append("</div>")
     out.append('<div class="box small"><p><b>How it is measured:</b> a signal is counted once, on the first scan where the stock is fresh. '
                "Entry is that scan's closing price. The return is taken at the first scan at least 7, 14 or 28 days later. "
                "Market avg is the average return of all stocks in the same market over the same days. "
@@ -666,6 +678,15 @@ def analysis_html(scans):
 
 
 
+SUBJS = """<script>
+(function(){var d=document,r=d.documentElement,t=d.querySelector('.tabs'),sb=d.querySelector('.subtabs'),bs=sb?sb.querySelectorAll('button'):[],ps=d.querySelectorAll('.sp');
+function H(){var a=t?t.offsetHeight:0;r.style.setProperty('--tabsh',a+'px');var q=sb&&sb.offsetHeight?sb.offsetHeight:0;r.style.setProperty('--stack',(a+q)+'px')}
+function S(i){for(var k=0;k<bs.length;k++){bs[k].setAttribute('aria-selected',k==i);ps[k].className='sp'+(k==i?' on':'')}H()}
+for(var k=0;k<bs.length;k++)(function(k){bs[k].onclick=function(){S(k)}})(k);
+H();addEventListener('resize',H);d.addEventListener('click',function(){setTimeout(H,0)});setTimeout(H,300);})();
+</script>"""
+
+
 def page(scan, past, depth):
     scans_all = _scans_asc()
     bid = html.escape(scan["scan_date"] + " " + scan.get("run_at", ""), quote=True)
@@ -710,7 +731,7 @@ def page(scan, past, depth):
     parts.append("<h2>Past scans</h2><p>")
     links = [f'<a href="{up}archive/{s["scan_date"]}.html">{fmt_date(s["scan_date"])}</a>' for s in past]
     parts.append(" &middot; ".join(links) if links else "<span class='mut'>None yet.</span>")
-    parts.append("</p></main>" + TABJS + (FRESHJS if depth == 0 else "") + "</body></html>")
+    parts.append("</p></main>" + TABJS + SUBJS + (FRESHJS if depth == 0 else "") + "</body></html>")
     return "".join(parts)
 
 
