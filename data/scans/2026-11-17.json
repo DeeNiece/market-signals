@@ -1,0 +1,1384 @@
+{
+ "scan_date": "2026-11-17",
+ "run_at": "2026-11-17T16:50:00+08:00",
+ "markets": {
+  "PSEi": {
+   "prices": {
+    "PSE:ICT": 718,
+    "PSE:SM": 547.5,
+    "PSE:BDO": 123.1,
+    "PSE:BPI": 99.7,
+    "PSE:MER": 400,
+    "PSE:SMPH": 17.3,
+    "PSE:AC": 561,
+    "PSE:MBT": 61.25,
+    "PSE:TEL": 980.5,
+    "PSE:EMI": 15.14,
+    "PSE:ALI": 14.98,
+    "PSE:GLO": 1366,
+    "PSE:AEV": 37,
+    "PSE:JFC": 150.8,
+    "PSE:LTG": 15.6,
+    "PSE:SMC": 65.7,
+    "PSE:AREIT": 35,
+    "PSE:CBC": 50.4,
+    "PSE:JGS": 17.18,
+    "PSE:URC": 60.8,
+    "PSE:RCR": 5.98,
+    "PSE:MYNLD": 16.34,
+    "PSE:PGOLD": 40.1,
+    "PSE:MONDE": 6.36,
+    "PSE:ACEN": 2.31,
+    "PSE:CNPF": 28,
+    "PSE:GTCAP": 443.2,
+    "PSE:DMC": 6.7,
+    "PSE:SCC": 10.04,
+    "PSE:PLUS": 5.43
+   },
+   "label": "PSEi (30 stocks)",
+   "total": 30,
+   "ma_bull": 14,
+   "hma_up": 12,
+   "rows": [
+    {
+     "tv": "PSE:LTG",
+     "symbol": "LTG",
+     "name": "LT Group",
+     "close": 15.6,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 2
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 2,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": 0.87,
+     "earnings": null,
+     "fund": {
+      "pe": 4.9,
+      "eps_yoy": 8.1,
+      "rev_yoy": 1.9,
+      "margin": 25.4,
+      "yield": 1.0,
+      "last": "2026-11-12",
+      "next": "2027-03-12",
+      "eps_surp": null,
+      "rev_surp": null,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "PSE:PGOLD",
+     "symbol": "PGOLD",
+     "name": "Puregold Price Club",
+     "close": 40.1,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 2
+      }
+     ],
+     "best": 2,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": -0.63,
+     "earnings": null,
+     "fund": {
+      "pe": 9.0,
+      "eps_yoy": 17.5,
+      "rev_yoy": 11.4,
+      "margin": 4.8,
+      "yield": 4.9,
+      "last": "2026-11-12",
+      "next": "2027-04-22",
+      "eps_surp": null,
+      "rev_surp": null,
+      "sector": "Retail Trade"
+     }
+    },
+    {
+     "tv": "PSE:CBC",
+     "symbol": "CBC",
+     "name": "China Banking Corp",
+     "close": 50.4,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 3
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 7
+      }
+     ],
+     "best": 3,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": 1.44,
+     "earnings": null,
+     "fund": {
+      "pe": 4.5,
+      "eps_yoy": 13.8,
+      "rev_yoy": 2.8,
+      "margin": 39.8,
+      "yield": 3.6,
+      "last": "2026-02-25",
+      "next": "2027-02-26",
+      "eps_surp": null,
+      "rev_surp": null,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "PSE:JGS",
+     "symbol": "JGS",
+     "name": "JG Summit Holdings",
+     "close": 17.18,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 4
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 4,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 2.06,
+     "earnings": null,
+     "fund": {
+      "pe": null,
+      "eps_yoy": null,
+      "rev_yoy": null,
+      "margin": null,
+      "yield": 2.6,
+      "last": "2026-11-16",
+      "next": "2027-03-31",
+      "eps_surp": null,
+      "rev_surp": null,
+      "sector": "Consumer Non-Durables"
+     }
+    },
+    {
+     "tv": "PSE:MONDE",
+     "symbol": "MONDE",
+     "name": "Monde Nissin",
+     "close": 6.36,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 4
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 4,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": 2.18,
+     "earnings": null,
+     "fund": {
+      "pe": 11.3,
+      "eps_yoy": 878.0,
+      "rev_yoy": 6.9,
+      "margin": 11.1,
+      "yield": 4.9,
+      "last": "2026-11-04",
+      "next": "2027-03-25",
+      "eps_surp": -0.4,
+      "rev_surp": null,
+      "sector": "Retail Trade"
+     }
+    },
+    {
+     "tv": "PSE:DMC",
+     "symbol": "DMC",
+     "name": "DMCI Holdings",
+     "close": 6.7,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 4
+      }
+     ],
+     "best": 4,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": -2.84,
+     "earnings": null,
+     "fund": {
+      "pe": 4.9,
+      "eps_yoy": 16.9,
+      "rev_yoy": 3.2,
+      "margin": 15.7,
+      "yield": 4.5,
+      "last": "2026-11-06",
+      "next": "2027-03-08",
+      "eps_surp": null,
+      "rev_surp": null,
+      "sector": "Energy Minerals"
+     }
+    },
+    {
+     "tv": "PSE:AC",
+     "symbol": "AC",
+     "name": "Ayala Corp",
+     "close": 561,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 6
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 7
+      }
+     ],
+     "best": 6,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": 2.47,
+     "earnings": null,
+     "fund": {
+      "pe": 7.2,
+      "eps_yoy": -6.5,
+      "rev_yoy": 6.6,
+      "margin": 14.6,
+      "yield": 1.7,
+      "last": "2026-11-12",
+      "next": "2027-03-12",
+      "eps_surp": null,
+      "rev_surp": -3.0,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "PSE:CNPF",
+     "symbol": "CNPF",
+     "name": "Century Pacific Food",
+     "close": 28,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 6
+      }
+     ],
+     "best": 6,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": -2.29,
+     "earnings": null,
+     "fund": {
+      "pe": 15.4,
+      "eps_yoy": -6.0,
+      "rev_yoy": 14.5,
+      "margin": 7.0,
+      "yield": 2.1,
+      "last": "2026-11-05",
+      "next": "2027-04-12",
+      "eps_surp": null,
+      "rev_surp": null,
+      "sector": "Consumer Non-Durables"
+     }
+    },
+    {
+     "tv": "PSE:BPI",
+     "symbol": "BPI",
+     "name": "Bank of the Philippine Islands",
+     "close": 99.7,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 7
+      }
+     ],
+     "best": 7,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": 1.6,
+     "earnings": null,
+     "fund": {
+      "pe": 8.1,
+      "eps_yoy": 0.6,
+      "rev_yoy": 11.8,
+      "margin": 31.1,
+      "yield": 4.9,
+      "last": "2026-10-22",
+      "next": "2027-02-04",
+      "eps_surp": -0.3,
+      "rev_surp": -2.2,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "PSE:JFC",
+     "symbol": "JFC",
+     "name": "Jollibee Foods",
+     "close": 150.8,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 8,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 3.81,
+     "earnings": null,
+     "fund": {
+      "pe": 16.9,
+      "eps_yoy": -1.2,
+      "rev_yoy": 11.1,
+      "margin": 3.1,
+      "yield": 2.2,
+      "last": "2026-11-10",
+      "next": "2027-03-18",
+      "eps_surp": 0.0,
+      "rev_surp": null,
+      "sector": "Consumer Services"
+     }
+    },
+    {
+     "tv": "PSE:MBT",
+     "symbol": "MBT",
+     "name": "Metropolitan Bank & Trust",
+     "close": 61.25,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 9
+      }
+     ],
+     "best": 9,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": 0.34,
+     "earnings": null,
+     "fund": {
+      "pe": 5.6,
+      "eps_yoy": -1.9,
+      "rev_yoy": 6.0,
+      "margin": 29.9,
+      "yield": 4.9,
+      "last": "2026-11-05",
+      "next": "2027-02-25",
+      "eps_surp": null,
+      "rev_surp": null,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "PSE:URC",
+     "symbol": "URC",
+     "name": "Universal Robina",
+     "close": 60.8,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 10
+      }
+     ],
+     "best": 10,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 2.9,
+     "earnings": null,
+     "fund": {
+      "pe": 11.7,
+      "eps_yoy": -8.2,
+      "rev_yoy": 3.9,
+      "margin": 6.3,
+      "yield": 3.4,
+      "last": "2026-11-05",
+      "next": "2027-03-12",
+      "eps_surp": null,
+      "rev_surp": null,
+      "sector": "Consumer Non-Durables"
+     }
+    }
+   ]
+  },
+  "HSI": {
+   "prices": {
+    "HKEX:700": 376,
+    "HKEX:9988": 85.45,
+    "HKEX:1810": 29.7,
+    "HKEX:981": 49.2,
+    "HKEX:992": 16.46,
+    "HKEX:3690": 70.5,
+    "HKEX:1347": 74.6,
+    "HKEX:1299": 77.35,
+    "HKEX:939": 10.59,
+    "HKEX:5": 138.5,
+    "HKEX:883": 22.62,
+    "HKEX:3750": 366.8,
+    "HKEX:2269": 46.3,
+    "HKEX:2318": 51.25,
+    "HKEX:1398": 8.005,
+    "HKEX:1211": 64.15,
+    "HKEX:2359": 192.8,
+    "HKEX:2628": 22.84,
+    "HKEX:2899": 25.82,
+    "HKEX:9999": 189.8,
+    "HKEX:388": 378.2,
+    "HKEX:9992": 144.8,
+    "HKEX:941": 80.5,
+    "HKEX:3988": 6.34,
+    "HKEX:1024": 24.24,
+    "HKEX:857": 10.35,
+    "HKEX:1801": 85.8,
+    "HKEX:9888": 70.9,
+    "HKEX:9618": 105.2,
+    "HKEX:6160": 247.4,
+    "HKEX:9961": 344.4,
+    "HKEX:669": 139.6,
+    "HKEX:2020": 82.25,
+    "HKEX:1378": 19.16,
+    "HKEX:1093": 7.89,
+    "HKEX:3968": 54.3,
+    "HKEX:2388": 48.7,
+    "HKEX:175": 13.51,
+    "HKEX:1088": 43.56,
+    "HKEX:386": 4.755,
+    "HKEX:300": 103.3,
+    "HKEX:2338": 21.32,
+    "HKEX:1109": 29.6,
+    "HKEX:16": 110.4,
+    "HKEX:27": 33.44,
+    "HKEX:3993": 11.27,
+    "HKEX:2382": 62,
+    "HKEX:2319": 23.1,
+    "HKEX:1": 68.85,
+    "HKEX:1177": 5.46
+   },
+   "label": "Hang Seng Index constituents, top 50 by 30-day value traded",
+   "total": 50,
+   "ma_bull": 35,
+   "hma_up": 25,
+   "rows": [
+    {
+     "tv": "HKEX:1347",
+     "symbol": "1347",
+     "name": "Hua Hong Semiconductor",
+     "close": 74.6,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 0
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 0,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": 1.44,
+     "earnings": null,
+     "fund": {
+      "pe": 65.0,
+      "eps_yoy": 3725.7,
+      "rev_yoy": 49.4,
+      "margin": 7.5,
+      "yield": 0.0,
+      "last": "2026-11-05",
+      "next": "2027-02-16",
+      "eps_surp": 57.9,
+      "rev_surp": 26.5,
+      "sector": "Electronic Technology"
+     }
+    },
+    {
+     "tv": "HKEX:1801",
+     "symbol": "1801",
+     "name": "Innovent Biologics",
+     "close": 85.8,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 1
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 1,
+     "fresh": true,
+     "above_hma": false,
+     "gap_pct": 1.27,
+     "earnings": null,
+     "fund": {
+      "pe": 110.0,
+      "eps_yoy": 7.4,
+      "rev_yoy": 42.6,
+      "margin": 8.0,
+      "yield": 0.0,
+      "last": "2026-08-25",
+      "next": "2027-03-31",
+      "eps_surp": 48.9,
+      "rev_surp": -3.2,
+      "sector": "Health Technology"
+     }
+    },
+    {
+     "tv": "HKEX:2269",
+     "symbol": "2269",
+     "name": "WuXi Biologics",
+     "close": 46.3,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 1
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 1,
+     "fresh": true,
+     "above_hma": false,
+     "gap_pct": 1.08,
+     "earnings": null,
+     "fund": {
+      "pe": 34.8,
+      "eps_yoy": 25.0,
+      "rev_yoy": 21.9,
+      "margin": 21.2,
+      "yield": 0.0,
+      "last": "2026-08-25",
+      "next": "2027-03-23",
+      "eps_surp": 28.9,
+      "rev_surp": 2.7,
+      "sector": "Health Technology"
+     }
+    },
+    {
+     "tv": "HKEX:2359",
+     "symbol": "2359",
+     "name": "WuXi AppTec",
+     "close": 192.8,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 2
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 2,
+     "fresh": true,
+     "above_hma": false,
+     "gap_pct": 1.36,
+     "earnings": null,
+     "fund": {
+      "pe": 19.1,
+      "eps_yoy": 84.0,
+      "rev_yoy": 38.3,
+      "margin": 46.8,
+      "yield": 1.2,
+      "last": "2026-10-26",
+      "next": "2027-03-22",
+      "eps_surp": -5.8,
+      "rev_surp": 4.4,
+      "sector": "Health Technology"
+     }
+    },
+    {
+     "tv": "HKEX:2388",
+     "symbol": "2388",
+     "name": "BOC Hong Kong",
+     "close": 48.7,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 2
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 7
+      }
+     ],
+     "best": 2,
+     "fresh": true,
+     "above_hma": false,
+     "gap_pct": 0.82,
+     "earnings": null,
+     "fund": {
+      "pe": 12.3,
+      "eps_yoy": 3.4,
+      "rev_yoy": -8.2,
+      "margin": 44.2,
+      "yield": 4.3,
+      "last": "2026-08-28",
+      "next": "2027-03-30",
+      "eps_surp": 3.0,
+      "rev_surp": -5.4,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "HKEX:3988",
+     "symbol": "3988",
+     "name": "Bank of China",
+     "close": 6.34,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 2
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 6
+      }
+     ],
+     "best": 2,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": 1.8,
+     "earnings": null,
+     "fund": {
+      "pe": 7.1,
+      "eps_yoy": 5.9,
+      "rev_yoy": 5.0,
+      "margin": 35.7,
+      "yield": 4.1,
+      "last": "2026-10-30",
+      "next": "2027-03-30",
+      "eps_surp": 0.0,
+      "rev_surp": -4.7,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "HKEX:1177",
+     "symbol": "1177",
+     "name": "Sino Biopharmaceutical",
+     "close": 5.46,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 4
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 4,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 5.85,
+     "earnings": null,
+     "fund": {
+      "pe": 35.7,
+      "eps_yoy": -31.4,
+      "rev_yoy": 14.6,
+      "margin": 7.3,
+      "yield": 2.2,
+      "last": "2026-08-19",
+      "next": "2027-04-01",
+      "eps_surp": 58.6,
+      "rev_surp": 0.7,
+      "sector": "Health Technology"
+     }
+    },
+    {
+     "tv": "HKEX:9992",
+     "symbol": "9992",
+     "name": "Pop Mart",
+     "close": 144.8,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 4
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 10
+      }
+     ],
+     "best": 4,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 3.06,
+     "earnings": null,
+     "fund": {
+      "pe": 13.1,
+      "eps_yoy": 101.9,
+      "rev_yoy": 86.8,
+      "margin": 32.7,
+      "yield": 1.9,
+      "last": "2026-08-20",
+      "next": "2027-03-31",
+      "eps_surp": -13.5,
+      "rev_surp": -10.1,
+      "sector": "Consumer Services"
+     }
+    },
+    {
+     "tv": "HKEX:9999",
+     "symbol": "9999",
+     "name": "NetEase",
+     "close": 189.8,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 4
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 4,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 3.51,
+     "earnings": null,
+     "fund": {
+      "pe": 16.8,
+      "eps_yoy": -1.9,
+      "rev_yoy": 10.2,
+      "margin": 27.9,
+      "yield": 2.4,
+      "last": "2026-08-20",
+      "next": "2026-11-19",
+      "eps_surp": -22.0,
+      "rev_surp": 3.3,
+      "sector": "Technology Services"
+     }
+    },
+    {
+     "tv": "HKEX:700",
+     "symbol": "700",
+     "name": "Tencent",
+     "close": 376,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 4
+      }
+     ],
+     "best": 4,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 0.92,
+     "earnings": null,
+     "fund": {
+      "pe": 13.2,
+      "eps_yoy": 18.2,
+      "rev_yoy": 16.0,
+      "margin": 29.8,
+      "yield": 1.4,
+      "last": "2026-08-12",
+      "next": "2026-11-18",
+      "eps_surp": 1.8,
+      "rev_surp": 1.2,
+      "sector": "Technology Services"
+     }
+    },
+    {
+     "tv": "HKEX:1378",
+     "symbol": "1378",
+     "name": "China Hongqiao",
+     "close": 19.16,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 5
+      }
+     ],
+     "best": 5,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 0.23,
+     "earnings": null,
+     "fund": {
+      "pe": 6.4,
+      "eps_yoy": 2.4,
+      "rev_yoy": 6.9,
+      "margin": 16.4,
+      "yield": 8.5,
+      "last": "2026-07-10",
+      "next": "2027-03-19",
+      "eps_surp": -12.4,
+      "rev_surp": -4.1,
+      "sector": "Non-Energy Minerals"
+     }
+    },
+    {
+     "tv": "HKEX:1088",
+     "symbol": "1088",
+     "name": "China Shenhua",
+     "close": 43.56,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 6
+      }
+     ],
+     "best": 6,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 1.75,
+     "earnings": null,
+     "fund": {
+      "pe": 13.3,
+      "eps_yoy": 12.8,
+      "rev_yoy": 33.7,
+      "margin": 15.9,
+      "yield": 5.4,
+      "last": "2026-10-23",
+      "next": "2027-03-19",
+      "eps_surp": 2.1,
+      "rev_surp": 5.0,
+      "sector": "Energy Minerals"
+     }
+    },
+    {
+     "tv": "HKEX:388",
+     "symbol": "388",
+     "name": "HKEX",
+     "close": 378.2,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 6
+      }
+     ],
+     "best": 6,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 1.95,
+     "earnings": null,
+     "fund": {
+      "pe": 24.3,
+      "eps_yoy": 28.2,
+      "rev_yoy": 12.9,
+      "margin": 62.0,
+      "yield": 3.7,
+      "last": "2026-11-06",
+      "next": "2027-03-04",
+      "eps_surp": -2.1,
+      "rev_surp": -0.6,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "HKEX:5",
+     "symbol": "5",
+     "name": "HSBC",
+     "close": 138.5,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 6
+      }
+     ],
+     "best": 6,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": -0.77,
+     "earnings": null,
+     "fund": {
+      "pe": 11.7,
+      "eps_yoy": 57.1,
+      "rev_yoy": -4.1,
+      "margin": 35.2,
+      "yield": 4.1,
+      "last": "2026-10-27",
+      "next": "2027-02-23",
+      "eps_surp": -4.6,
+      "rev_surp": -1.6,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "HKEX:2318",
+     "symbol": "2318",
+     "name": "Ping An",
+     "close": 51.25,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 7
+      }
+     ],
+     "best": 7,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 3.22,
+     "earnings": null,
+     "fund": {
+      "pe": 8.2,
+      "eps_yoy": -26.0,
+      "rev_yoy": -7.6,
+      "margin": 9.6,
+      "yield": 6.1,
+      "last": "2026-10-28",
+      "next": "2027-03-18",
+      "eps_surp": null,
+      "rev_surp": null,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "HKEX:9618",
+     "symbol": "9618",
+     "name": "JD.com",
+     "close": 105.2,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 7
+      }
+     ],
+     "best": 7,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 4.47,
+     "earnings": null,
+     "fund": {
+      "pe": 18.1,
+      "eps_yoy": -57.9,
+      "rev_yoy": 7.5,
+      "margin": 1.1,
+      "yield": 3.7,
+      "last": "2026-08-13",
+      "next": "2026-11-17",
+      "eps_surp": 12.8,
+      "rev_surp": 1.9,
+      "sector": "Retail Trade"
+     }
+    },
+    {
+     "tv": "HKEX:981",
+     "symbol": "981",
+     "name": "SMIC",
+     "close": 49.2,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 7
+      }
+     ],
+     "best": 7,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": -1.36,
+     "earnings": null,
+     "fund": {
+      "pe": 42.3,
+      "eps_yoy": 87.1,
+      "rev_yoy": 26.1,
+      "margin": 10.9,
+      "yield": 0.0,
+      "last": "2026-08-13",
+      "next": "2026-11-12",
+      "eps_surp": 65.3,
+      "rev_surp": 4.8,
+      "sector": "Electronic Technology"
+     }
+    },
+    {
+     "tv": "HKEX:941",
+     "symbol": "941",
+     "name": "China Mobile",
+     "close": 80.5,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 8
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 11
+      }
+     ],
+     "best": 8,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 1.22,
+     "earnings": null,
+     "fund": {
+      "pe": 12.0,
+      "eps_yoy": -6.0,
+      "rev_yoy": 4.2,
+      "margin": 12.4,
+      "yield": 6.7,
+      "last": "2026-10-20",
+      "next": "2027-03-25",
+      "eps_surp": 1.3,
+      "rev_surp": -1.7,
+      "sector": "Communications"
+     }
+    },
+    {
+     "tv": "HKEX:1",
+     "symbol": "1",
+     "name": "CK Hutchison",
+     "close": 68.85,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 8
+      }
+     ],
+     "best": 8,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 3.98,
+     "earnings": null,
+     "fund": {
+      "pe": 7.0,
+      "eps_yoy": 388.5,
+      "rev_yoy": -2.3,
+      "margin": 13.6,
+      "yield": 3.4,
+      "last": "2026-08-13",
+      "next": "2027-03-18",
+      "eps_surp": -9.6,
+      "rev_surp": 71.5,
+      "sector": "Retail Trade"
+     }
+    },
+    {
+     "tv": "HKEX:3750",
+     "symbol": "3750",
+     "name": "CATL",
+     "close": 366.8,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 8,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": -2.37,
+     "earnings": null,
+     "fund": {
+      "pe": 16.8,
+      "eps_yoy": 40.2,
+      "rev_yoy": 58.7,
+      "margin": 15.0,
+      "yield": 1.1,
+      "last": "2026-10-20",
+      "next": "2027-04-28",
+      "eps_surp": -12.5,
+      "rev_surp": 0.4,
+      "sector": "Producer Manufacturing"
+     }
+    },
+    {
+     "tv": "HKEX:3968",
+     "symbol": "3968",
+     "name": "China Merchants Bank",
+     "close": 54.3,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 8,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 1.57,
+     "earnings": null,
+     "fund": {
+      "pe": 7.9,
+      "eps_yoy": 7.8,
+      "rev_yoy": 3.4,
+      "margin": 43.4,
+      "yield": 4.2,
+      "last": "2026-10-30",
+      "next": "2027-03-31",
+      "eps_surp": -0.6,
+      "rev_surp": 1.5,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "HKEX:6160",
+     "symbol": "6160",
+     "name": "BeOne Medicines",
+     "close": 247.4,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 8
+      }
+     ],
+     "best": 8,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 8.17,
+     "earnings": null,
+     "fund": {
+      "pe": 52.2,
+      "eps_yoy": 1423.2,
+      "rev_yoy": 33.2,
+      "margin": 13.9,
+      "yield": 0.0,
+      "last": "2026-11-05",
+      "next": "2027-03-31",
+      "eps_surp": 70.8,
+      "rev_surp": 7.5,
+      "sector": "Health Technology"
+     }
+    },
+    {
+     "tv": "HKEX:1109",
+     "symbol": "1109",
+     "name": "China Resources Land",
+     "close": 29.6,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 9
+      }
+     ],
+     "best": 9,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 1.9,
+     "earnings": null,
+     "fund": {
+      "pe": 8.1,
+      "eps_yoy": -11.4,
+      "rev_yoy": -11.7,
+      "margin": 9.2,
+      "yield": 4.5,
+      "last": "2026-08-28",
+      "next": "2027-03-31",
+      "eps_surp": 4.4,
+      "rev_surp": -14.3,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "HKEX:3690",
+     "symbol": "3690",
+     "name": "Meituan",
+     "close": 70.5,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 9
+      }
+     ],
+     "best": 9,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 0.81,
+     "earnings": null,
+     "fund": {
+      "pe": null,
+      "eps_yoy": null,
+      "rev_yoy": 9.8,
+      "margin": -9.9,
+      "yield": 0.0,
+      "last": "2026-08-28",
+      "next": "2026-11-27",
+      "eps_surp": 660.0,
+      "rev_surp": 3.5,
+      "sector": "Technology Services"
+     }
+    },
+    {
+     "tv": "HKEX:1398",
+     "symbol": "1398",
+     "name": "ICBC",
+     "close": 8.005,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 10
+      }
+     ],
+     "best": 10,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 2.96,
+     "earnings": null,
+     "fund": {
+      "pe": 6.5,
+      "eps_yoy": 10.0,
+      "rev_yoy": 3.7,
+      "margin": 43.9,
+      "yield": 4.7,
+      "last": "2026-10-30",
+      "next": "2027-03-31",
+      "eps_surp": 3.4,
+      "rev_surp": 0.3,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "HKEX:2020",
+     "symbol": "2020",
+     "name": "ANTA Sports",
+     "close": 82.25,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 10
+      }
+     ],
+     "best": 10,
+     "fresh": false,
+     "above_hma": true,
+     "gap_pct": 4.54,
+     "earnings": null,
+     "fund": {
+      "pe": 12.9,
+      "eps_yoy": 12.5,
+      "rev_yoy": 16.6,
+      "margin": 18.9,
+      "yield": 3.3,
+      "last": "2026-08-26",
+      "next": "2027-03-24",
+      "eps_surp": 24.2,
+      "rev_surp": -0.1,
+      "sector": "Consumer Non-Durables"
+     }
+    },
+    {
+     "tv": "HKEX:9961",
+     "symbol": "9961",
+     "name": "Trip.com",
+     "close": 344.4,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 10
+      }
+     ],
+     "best": 10,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 6.76,
+     "earnings": null,
+     "fund": {
+      "pe": 9.2,
+      "eps_yoy": 33.6,
+      "rev_yoy": 18.4,
+      "margin": 36.1,
+      "yield": 0.0,
+      "last": "2026-09-16",
+      "next": "2026-11-23",
+      "eps_surp": 23.9,
+      "rev_surp": 1.8,
+      "sector": "Consumer Services"
+     }
+    },
+    {
+     "tv": "HKEX:1299",
+     "symbol": "1299",
+     "name": "AIA",
+     "close": 77.35,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 11
+      }
+     ],
+     "best": 11,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 4.89,
+     "earnings": null,
+     "fund": {
+      "pe": 13.0,
+      "eps_yoy": 36.6,
+      "rev_yoy": 13.3,
+      "margin": 23.2,
+      "yield": 2.5,
+      "last": "2026-08-20",
+      "next": "2027-03-05",
+      "eps_surp": 2.6,
+      "rev_surp": null,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "HKEX:16",
+     "symbol": "16",
+     "name": "Sun Hung Kai Properties",
+     "close": 110.4,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 11
+      }
+     ],
+     "best": 11,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 3.61,
+     "earnings": null,
+     "fund": {
+      "pe": 14.9,
+      "eps_yoy": 11.1,
+      "rev_yoy": 17.3,
+      "margin": 22.8,
+      "yield": 3.4,
+      "last": "2026-09-10",
+      "next": "2027-02-25",
+      "eps_surp": -2.6,
+      "rev_surp": -31.4,
+      "sector": "Finance"
+     }
+    },
+    {
+     "tv": "HKEX:1810",
+     "symbol": "1810",
+     "name": "Xiaomi",
+     "close": 29.7,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 11
+      }
+     ],
+     "best": 11,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 8.07,
+     "earnings": null,
+     "fund": {
+      "pe": 21.7,
+      "eps_yoy": -11.2,
+      "rev_yoy": 5.7,
+      "margin": 7.5,
+      "yield": 0.0,
+      "last": "2026-08-18",
+      "next": "2026-11-24",
+      "eps_surp": 63.8,
+      "rev_surp": 0.5,
+      "sector": "Electronic Technology"
+     }
+    }
+   ]
+  }
+ }
+}
