@@ -316,7 +316,7 @@ def table(rows, scan_date=None):
         t.append(
             f'<tr class="s"><td><a href="{link}" target="_blank" rel="noopener">{html.escape(r["symbol"])}</a>'
             f'<br><span class="mut small">{html.escape(r["name"])}</span>'
-            f'<br><span class="mut small">Last close {fmt_px(r["close"])}</span></td>'
+            f'<br><span class="mut small">Close {dt.date.fromisoformat(scan_date).strftime("%d %b") if scan_date else "last"}: {fmt_px(r["close"])}</span></td>'
             f"<td class=\"sg\" data-l=\"Signals\">{sig}</td><td data-l=\"Price vs HMA 26\">{vs}</td>"
             f"<td data-l=\"9 vs 26 SMA\"><span class=\"{'up' if r['gap_pct'] > 0 else ('dn' if r['gap_pct'] < 0 else '')}\">{r['gap_pct']:+.2f}%</span></td><td data-l=\"Earnings\">{e}</td></tr>")
         t.append(fund_html(r.get("fund"), scan_date) if scan_date else "")
