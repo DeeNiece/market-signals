@@ -143,6 +143,8 @@ def run_scan(inp):
                 soon = 0 <= days <= EARNINGS_DAYS
             cal = m.get("dates") or []
             for x in r["signals"]:
+                if len(st["closes"]) > x["bars_ago"]:
+                    x["px"] = round(st["closes"][-1 - x["bars_ago"]], 4)
                 if len(cal) > x["bars_ago"] and cal[-1] == st["last_date"]:
                     x["date"] = cal[-1 - x["bars_ago"]]
             best = min(x["bars_ago"] for x in r["signals"])
@@ -286,10 +288,19 @@ def fmt_short(s):
     return dt.date.fromisoformat(s).strftime("%d %b %Y")
 
 
-def sig_txt(x):
+def fmt_px(v):
+    return f"{v:,.2f}"
+
+
+def sig_txt(x, close=None):
     t = html.escape(x["type"]) + " &middot; " + bars_txt(x["bars_ago"])
     if x.get("date"):
         t += " (" + fmt_short(x["date"]) + ")"
+    if x.get("px"):
+        t += " &middot; close " + fmt_px(x["px"])
+        if close and x["px"]:
+            ch = (close / x["px"] - 1) * 100
+            t += f' <span class="{"up" if ch > 0 else ("dn" if ch < 0 else "")}">{ch:+.1f}%</span>'
     return t
 
 
@@ -299,12 +310,13 @@ def table(rows, scan_date=None):
     t = ['<div class="wrap"><table><tr><th>Stock</th><th>Signals</th><th>Price vs HMA 26</th><th>9 vs 26 SMA</th><th>Earnings</th></tr>']
     for r in rows:
         link = "https://www.tradingview.com/chart/?symbol=" + r["tv"].replace(":", "%3A")
-        sig = "".join(f'<span class="tag">{sig_txt(s)}</span>' for s in r["signals"])
+        sig = "".join(f'<span class="tag">{sig_txt(s, r["close"])}</span>' for s in r["signals"])
         vs = '<span class="up">Above</span>' if r["above_hma"] else '<span class="dn">Below</span>'
         e = f'<span class="warn">{html.escape(r["earnings"])}</span>' if r["earnings"] else "&ndash;"
         t.append(
             f'<tr class="s"><td><a href="{link}" target="_blank" rel="noopener">{html.escape(r["symbol"])}</a>'
-            f'<br><span class="mut small">{html.escape(r["name"])}</span></td>'
+            f'<br><span class="mut small">{html.escape(r["name"])}</span>'
+            f'<br><span class="mut small">Last close {fmt_px(r["close"])}</span></td>'
             f"<td class=\"sg\" data-l=\"Signals\">{sig}</td><td data-l=\"Price vs HMA 26\">{vs}</td>"
             f"<td data-l=\"9 vs 26 SMA\"><span class=\"{'up' if r['gap_pct'] > 0 else ('dn' if r['gap_pct'] < 0 else '')}\">{r['gap_pct']:+.2f}%</span></td><td data-l=\"Earnings\">{e}</td></tr>")
         t.append(fund_html(r.get("fund"), scan_date) if scan_date else "")

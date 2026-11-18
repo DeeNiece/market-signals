@@ -27,3 +27,6 @@ run.py also builds a fourth tab, Analysis, with plain SVG charts (no libraries):
 
 ## Signal dates
 Each signal shows its date, for example "MA cross - 2 candles ago (13 Nov 2026)". The date comes from a per-market trading calendar in the input: "dates": [...] (oldest first, last = last_date, same calendar as closes). Take it from the bars of one liquid stock per market (HKEX:700 for HSI, PSE:SM for PSEi): use the UTC date of each bar time t, after dropping the forming bar. If "dates" is missing, the signal shows without a date.
+
+## Signal price
+Each signal also stores the close on the signal day ("px", taken from closes at run time, no extra data calls) and the page shows it with the change to the latest close, for example "close 15.30 +2.0%". The stock cell shows the last close. Signals from earlier scans that were saved before this feature may show no signal price.

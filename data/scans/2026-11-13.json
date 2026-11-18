@@ -1067,7 +1067,8 @@
       {
        "type": "MA cross",
        "bars_ago": 6,
-       "date": "2026-11-05"
+       "date": "2026-11-05",
+       "px": 71.25
       },
       {
        "type": "HMA turn",
