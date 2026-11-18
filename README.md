@@ -24,3 +24,6 @@ run.py builds a third tab from data/scans/*.json. Each scan file stores the last
 
 ## Analysis tab
 run.py also builds a fourth tab, Analysis, with plain SVG charts (no libraries): win ratio, performance vs market, return by holding time, market breadth over time, fresh signals per scan, stocks with a signal, signal types and sectors. All charts come from data/scans/*.json, so they fill in as scans are added. Colours: blue = PSEi, orange = HSI, gray = market average.
+
+## Signal dates
+Each signal shows its date, for example "MA cross - 2 candles ago (13 Nov 2026)". The date comes from a per-market trading calendar in the input: "dates": [...] (oldest first, last = last_date, same calendar as closes). Take it from the bars of one liquid stock per market (HKEX:700 for HSI, PSE:SM for PSEi): use the UTC date of each bar time t, after dropping the forming bar. If "dates" is missing, the signal shows without a date.

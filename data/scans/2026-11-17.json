@@ -48,11 +48,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 2
+       "bars_ago": 2,
+       "date": "2026-11-13"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 2,
@@ -81,7 +83,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 2
+       "bars_ago": 2,
+       "date": "2026-11-13"
       }
      ],
      "best": 2,
@@ -110,11 +113,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 3
+       "bars_ago": 3,
+       "date": "2026-11-12"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 7
+       "bars_ago": 7,
+       "date": "2026-11-06"
       }
      ],
      "best": 3,
@@ -143,11 +148,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 4
+       "bars_ago": 4,
+       "date": "2026-11-11"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 4,
@@ -176,11 +183,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 4
+       "bars_ago": 4,
+       "date": "2026-11-11"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 4,
@@ -209,7 +218,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 4
+       "bars_ago": 4,
+       "date": "2026-11-11"
       }
      ],
      "best": 4,
@@ -238,11 +248,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 6
+       "bars_ago": 6,
+       "date": "2026-11-09"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 7
+       "bars_ago": 7,
+       "date": "2026-11-06"
       }
      ],
      "best": 6,
@@ -271,7 +283,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 6
+       "bars_ago": 6,
+       "date": "2026-11-09"
       }
      ],
      "best": 6,
@@ -300,7 +313,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 7
+       "bars_ago": 7,
+       "date": "2026-11-06"
       }
      ],
      "best": 7,
@@ -329,7 +343,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 8,
@@ -358,7 +373,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 9
+       "bars_ago": 9,
+       "date": "2026-11-04"
       }
      ],
      "best": 9,
@@ -387,7 +403,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 10
+       "bars_ago": 10,
+       "date": "2026-11-03"
       }
      ],
      "best": 10,
@@ -476,11 +493,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 0
+       "bars_ago": 0,
+       "date": "2026-11-17"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 0,
@@ -509,11 +528,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 1
+       "bars_ago": 1,
+       "date": "2026-11-16"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 1,
@@ -542,11 +563,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 1
+       "bars_ago": 1,
+       "date": "2026-11-16"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 1,
@@ -575,11 +598,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 2
+       "bars_ago": 2,
+       "date": "2026-11-13"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 2,
@@ -608,11 +633,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 2
+       "bars_ago": 2,
+       "date": "2026-11-13"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 7
+       "bars_ago": 7,
+       "date": "2026-11-06"
       }
      ],
      "best": 2,
@@ -641,11 +668,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 2
+       "bars_ago": 2,
+       "date": "2026-11-13"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 6
+       "bars_ago": 6,
+       "date": "2026-11-09"
       }
      ],
      "best": 2,
@@ -674,11 +703,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 4
+       "bars_ago": 4,
+       "date": "2026-11-11"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 4,
@@ -707,11 +738,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 4
+       "bars_ago": 4,
+       "date": "2026-11-11"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 10
+       "bars_ago": 10,
+       "date": "2026-11-03"
       }
      ],
      "best": 4,
@@ -740,11 +773,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 4
+       "bars_ago": 4,
+       "date": "2026-11-11"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 4,
@@ -773,7 +808,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 4
+       "bars_ago": 4,
+       "date": "2026-11-11"
       }
      ],
      "best": 4,
@@ -802,7 +838,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 5
+       "bars_ago": 5,
+       "date": "2026-11-10"
       }
      ],
      "best": 5,
@@ -831,7 +868,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 6
+       "bars_ago": 6,
+       "date": "2026-11-09"
       }
      ],
      "best": 6,
@@ -860,7 +898,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 6
+       "bars_ago": 6,
+       "date": "2026-11-09"
       }
      ],
      "best": 6,
@@ -889,7 +928,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 6
+       "bars_ago": 6,
+       "date": "2026-11-09"
       }
      ],
      "best": 6,
@@ -918,7 +958,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 7
+       "bars_ago": 7,
+       "date": "2026-11-06"
       }
      ],
      "best": 7,
@@ -947,7 +988,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 7
+       "bars_ago": 7,
+       "date": "2026-11-06"
       }
      ],
      "best": 7,
@@ -976,7 +1018,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 7
+       "bars_ago": 7,
+       "date": "2026-11-06"
       }
      ],
      "best": 7,
@@ -1005,11 +1048,13 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       },
       {
        "type": "HMA turn",
-       "bars_ago": 11
+       "bars_ago": 11,
+       "date": "2026-11-02"
       }
      ],
      "best": 8,
@@ -1038,7 +1083,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 8,
@@ -1067,7 +1113,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 8,
@@ -1096,7 +1143,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 8,
@@ -1125,7 +1173,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 8
+       "bars_ago": 8,
+       "date": "2026-11-05"
       }
      ],
      "best": 8,
@@ -1154,7 +1203,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 9
+       "bars_ago": 9,
+       "date": "2026-11-04"
       }
      ],
      "best": 9,
@@ -1183,7 +1233,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 9
+       "bars_ago": 9,
+       "date": "2026-11-04"
       }
      ],
      "best": 9,
@@ -1212,7 +1263,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 10
+       "bars_ago": 10,
+       "date": "2026-11-03"
       }
      ],
      "best": 10,
@@ -1241,7 +1293,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 10
+       "bars_ago": 10,
+       "date": "2026-11-03"
       }
      ],
      "best": 10,
@@ -1270,7 +1323,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 10
+       "bars_ago": 10,
+       "date": "2026-11-03"
       }
      ],
      "best": 10,
@@ -1299,7 +1353,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 11
+       "bars_ago": 11,
+       "date": "2026-11-02"
       }
      ],
      "best": 11,
@@ -1328,7 +1383,8 @@
      "signals": [
       {
        "type": "MA cross",
-       "bars_ago": 11
+       "bars_ago": 11,
+       "date": "2026-11-02"
       }
      ],
      "best": 11,
@@ -1357,7 +1413,8 @@
      "signals": [
       {
        "type": "HMA turn",
-       "bars_ago": 11
+       "bars_ago": 11,
+       "date": "2026-11-02"
       }
      ],
      "best": 11,

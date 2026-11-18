@@ -9,6 +9,7 @@ input.json format:
   "markets": {
     "PSEi": {
       "label": "PSEi (30 stocks)",
+      "dates": ["2026-10-14", ..., "2026-11-11"],   (trading dates, oldest first, last = last_date; same calendar as closes)
       "stocks": [
         {"tv": "PSE:SM", "symbol": "SM", "name": "SM Investments",
          "closes": [...closed daily closes, oldest first...],
@@ -140,6 +141,10 @@ def run_scan(inp):
             if e:
                 days = (dt.date.fromisoformat(e) - d0).days
                 soon = 0 <= days <= EARNINGS_DAYS
+            cal = m.get("dates") or []
+            for x in r["signals"]:
+                if len(cal) > x["bars_ago"] and cal[-1] == st["last_date"]:
+                    x["date"] = cal[-1 - x["bars_ago"]]
             best = min(x["bars_ago"] for x in r["signals"])
             rows.append({
                 "tv": st["tv"], "symbol": st["symbol"], "name": st["name"],
@@ -281,13 +286,20 @@ def fmt_short(s):
     return dt.date.fromisoformat(s).strftime("%d %b %Y")
 
 
+def sig_txt(x):
+    t = html.escape(x["type"]) + " &middot; " + bars_txt(x["bars_ago"])
+    if x.get("date"):
+        t += " (" + fmt_short(x["date"]) + ")"
+    return t
+
+
 def table(rows, scan_date=None):
     if not rows:
         return '<p class="mut">None.</p>'
     t = ['<div class="wrap"><table><tr><th>Stock</th><th>Signals</th><th>Price vs HMA 26</th><th>9 vs 26 SMA</th><th>Earnings</th></tr>']
     for r in rows:
         link = "https://www.tradingview.com/chart/?symbol=" + r["tv"].replace(":", "%3A")
-        sig = "".join(f'<span class="tag">{html.escape(s["type"])} &middot; {bars_txt(s["bars_ago"])}</span>' for s in r["signals"])
+        sig = "".join(f'<span class="tag">{sig_txt(s)}</span>' for s in r["signals"])
         vs = '<span class="up">Above</span>' if r["above_hma"] else '<span class="dn">Below</span>'
         e = f'<span class="warn">{html.escape(r["earnings"])}</span>' if r["earnings"] else "&ndash;"
         t.append(
