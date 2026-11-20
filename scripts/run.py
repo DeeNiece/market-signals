@@ -194,7 +194,7 @@ table.tr td.up{color:var(--acc)}table.tr td.dn{color:var(--red)}
 .subtabs .n{font-weight:400;font-size:.8rem;opacity:.85;display:block}
 .js .sp{display:none}.js .sp.on{display:block}
 table th{position:sticky;top:var(--stack,0px);background:var(--bg);z-index:3;box-shadow:inset 0 -1px 0 var(--line)}
-@media(min-width:641px){.wrap{overflow-x:clip}}
+@media(min-width:641px){.wrap{overflow-x:auto;overflow-y:auto;max-height:min(70vh,560px);border-bottom:1px solid var(--line)}.wrap th{top:0}}
 @media(min-width:641px){.trwrap{max-height:min(70vh,520px);overflow-y:auto;border-bottom:1px solid var(--line)}.trwrap th{top:0}}
 .js .panel{display:none}.js .panel.on{display:block}
 @media(max-width:640px){
