@@ -195,6 +195,7 @@ table.tr td.up{color:var(--acc)}table.tr td.dn{color:var(--red)}
 .js .sp{display:none}.js .sp.on{display:block}
 table th{position:sticky;top:var(--stack,0px);background:var(--bg);z-index:3;box-shadow:inset 0 -1px 0 var(--line)}
 @media(min-width:641px){.wrap{overflow-x:clip}}
+@media(min-width:641px){.trwrap{max-height:min(70vh,520px);overflow-y:auto;border-bottom:1px solid var(--line)}.trwrap th{top:0}}
 .js .panel{display:none}.js .panel.on{display:block}
 @media(max-width:640px){
 main{padding:16px 12px 48px}h1{font-size:1.35rem}h2{font-size:1.1rem}
@@ -435,8 +436,8 @@ def track_html(scans):
                             f'<td data-l="Return" class="{_cls(L["ret"]).strip()}">{_pct(L["ret"])}</td>'
                             f'<td data-l="Market avg" class="{_cls(L["bench"]).strip()}">{_pct(L["bench"])}</td></tr>')
             out.append("<h3>Each signal since entry</h3>")
-            out.append('<table class="tr"><tr><th>Stock</th><th>Signal date</th><th>Signal</th><th>Days</th>'
-                       '<th>Return</th><th>Market avg</th></tr>' + "".join(body) + "</table>")
+            out.append('<div class="trwrap"><table class="tr"><tr><th>Stock</th><th>Signal date</th><th>Signal</th><th>Days</th>'
+                       '<th>Return</th><th>Market avg</th></tr>' + "".join(body) + "</table></div>")
         else:
             out.append('<p class="mut">No signal has a later price yet. The first returns appear after the next scan.</p>')
         out.append("</div>")
