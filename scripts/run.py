@@ -22,7 +22,8 @@ input.json format:
 Rules (all on closed daily candles):
   MA cross   : simple MA 9 crosses above simple MA 26, and 9 is still above 26 now.
   HMA turn   : slope of the 26-period Hull MA flips from <=0 to >0, and is still rising now.
-  Fresh      : the signal is in the last 3 candles. Older = 4 to 12 candles ago.
+  Fresh      : the signal is in the last 5 candles (one trading week; it was 3 until the scans became weekly, older scan files keep their own
+               value in "fresh_n"). Older = 6 to 12 candles ago.
 """
 import datetime as dt
 import glob
@@ -33,7 +34,7 @@ import os
 import sys
 
 FAST, SLOW, HMA_N = 9, 26, 26
-FRESH, WINDOW = 3, 12
+FRESH, WINDOW = 5, 12
 EARNINGS_DAYS = 7
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -121,7 +122,7 @@ def fund_clean(f):
 def run_scan(inp):
     scan_date = max(st["last_date"] for m in inp["markets"].values() for st in m["stocks"])
     d0 = dt.date.fromisoformat(scan_date)
-    out = {"scan_date": scan_date, "run_at": inp.get("run_at", ""), "markets": {}}
+    out = {"scan_date": scan_date, "run_at": inp.get("run_at", ""), "fresh_n": FRESH, "markets": {}}
     for name, m in inp["markets"].items():
         rows, ma_bull, hma_up, total = [], 0, 0, 0
         prices = {}
@@ -354,7 +355,7 @@ def track_record(scans):
                     continue
                 ev = {"tv": tv, "symbol": r["symbol"], "name": r["name"], "date": s["scan_date"],
                       "entry": r["close"], "i": i,
-                      "types": sorted({x["type"] for x in r["signals"] if x["bars_ago"] < FRESH})}
+                      "types": sorted({x["type"] for x in r["signals"] if x["bars_ago"] < s.get("fresh_n", 3)})}
                 events.append(ev)
             prev_fresh = set(fresh)
         for ev in events:
@@ -441,7 +442,7 @@ def track_html(scans):
         else:
             out.append('<p class="mut">No signal has a later price yet. The first returns appear after the next scan.</p>')
         out.append("</div>")
-    out.append('<div class="box small"><p><b>How it is measured:</b> a signal is counted once, on the first scan where the stock is fresh. '
+    out.append('<div class="box small"><p><b>How it is measured:</b> a signal is counted once, on the first scan where the stock is fresh. Fresh means the signal is in the last 5 candles (one trading week); the first scans (13 and 17 Nov) used the last 3. '
                "Entry is that scan's closing price. The return is taken at the first scan at least 7, 14 or 28 days later. "
                "Market avg is the average return of all stocks in the same market over the same days. "
                "Prices are closes only. Costs, spreads and dividends are not included.</p></div>")
@@ -739,8 +740,9 @@ def page(scan, past, depth):
         parts.append(f"<h2>{html.escape(m['label'])}</h2>")
         parts.append(f'<p class="mut">Market breadth: {m["ma_bull"]} of {m["total"]} stocks have the 9 SMA above the 26 SMA. '
                      f'{m["hma_up"]} of {m["total"]} have a rising Hull MA 26.</p>')
-        parts.append(f"<h3>Fresh signals (last {FRESH} candles)</h3>" + table(fresh, scan["scan_date"]))
-        parts.append(f"<h3>Earlier signals ({FRESH + 1} to {WINDOW} candles ago)</h3>" + table(older, scan["scan_date"]))
+        fn = scan.get("fresh_n", 3)
+        parts.append(f"<h3>Fresh signals (last {fn} candles)</h3>" + table(fresh, scan["scan_date"]))
+        parts.append(f"<h3>Earlier signals ({fn + 1} to {WINDOW} candles ago)</h3>" + table(older, scan["scan_date"]))
         parts.append("</section>")
     parts.append(f'<section class="panel" id="p{len(mk)}" role="tabpanel">{track_html(scans_all)}</section>')
     parts.append(f'<section class="panel" id="p{len(mk) + 1}" role="tabpanel">{analysis_html(scans_all)}</section>')
