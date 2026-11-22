@@ -1,0 +1,163 @@
+{
+ "scan_date": "2026-11-20",
+ "run_at": "2026-11-22T11:22:00+08:00",
+ "markets": {
+  "PSEi": {
+   "prices": {
+    "PSE:ICT": 668,
+    "PSE:SM": 535.5,
+    "PSE:BDO": 119,
+    "PSE:BPI": 99.2,
+    "PSE:MER": 378,
+    "PSE:SMPH": 16.72,
+    "PSE:AC": 526,
+    "PSE:MBT": 60.95,
+    "PSE:TEL": 950,
+    "PSE:EMI": 15.4,
+    "PSE:ALI": 14.38,
+    "PSE:GLO": 1303,
+    "PSE:AEV": 36,
+    "PSE:LTG": 15.14,
+    "PSE:SMC": 64.5,
+    "PSE:AREIT": 34.8,
+    "PSE:CBC": 50,
+    "PSE:URC": 60.2,
+    "PSE:RCR": 5.99
+   },
+   "label": "PSEi (19 of 30 stocks scanned so far)",
+   "total": 19,
+   "ma_bull": 8,
+   "hma_up": 4,
+   "rows": [
+    {
+     "tv": "PSE:EMI",
+     "symbol": "EMI",
+     "name": "Emperador",
+     "close": 15.4,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 1,
+       "px": 15.5,
+       "date": "2026-11-19"
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 1,
+       "px": 15.5,
+       "date": "2026-11-19"
+      }
+     ],
+     "best": 1,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": 0.21,
+     "earnings": null,
+     "fund": null
+    },
+    {
+     "tv": "PSE:LTG",
+     "symbol": "LTG",
+     "name": "LT Group",
+     "close": 15.14,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 5,
+       "px": 15.32,
+       "date": "2026-11-13"
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 11,
+       "px": 15.14,
+       "date": "2026-11-05"
+      }
+     ],
+     "best": 5,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 1.06,
+     "earnings": null,
+     "fund": null
+    },
+    {
+     "tv": "PSE:CBC",
+     "symbol": "CBC",
+     "name": "China Banking Corp",
+     "close": 50,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 6,
+       "px": 50,
+       "date": "2026-11-12"
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 10,
+       "px": 48.6,
+       "date": "2026-11-06"
+      }
+     ],
+     "best": 6,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 2.72,
+     "earnings": null,
+     "fund": null
+    },
+    {
+     "tv": "PSE:AC",
+     "symbol": "AC",
+     "name": "Ayala Corp",
+     "close": 526,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 9,
+       "px": 549.5,
+       "date": "2026-11-09"
+      }
+     ],
+     "best": 9,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 1.79,
+     "earnings": null,
+     "fund": null
+    },
+    {
+     "tv": "PSE:BPI",
+     "symbol": "BPI",
+     "name": "Bank of the Philippine Islands",
+     "close": 99.2,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 10,
+       "px": 98.9,
+       "date": "2026-11-06"
+      }
+     ],
+     "best": 10,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 1.34,
+     "earnings": null,
+     "fund": null
+    }
+   ]
+  },
+  "HSI": {
+   "prices": {
+    "HKEX:700": 344
+   },
+   "label": "HSI (1 of 50 stocks scanned so far)",
+   "total": 1,
+   "ma_bull": 0,
+   "hma_up": 0,
+   "rows": []
+  }
+ }
+}
