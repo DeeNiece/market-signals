@@ -721,7 +721,7 @@ def page(scan, past, depth):
     parts = [f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
              f'<meta http-equiv="Cache-Control" content="no-cache"><meta name="build" content="{bid}"><title>Market Signals: PSEi and HSI</title><style>{CSS}</style></head><body><main>']
     parts.append("<h1>Market Signals: PSEi and HSI</h1>")
-    parts.append('<p class="mut">Bullish signals on the daily (D1) chart, from closed candles only. Scanned every Monday and Thursday after the close.</p>')
+    parts.append('<p class="mut">Bullish signals on the daily (D1) chart, from closed candles only. Scanned once a week, after the Friday close.</p>')
     parts.append(f'<div class="box"><b>Scan date: {fmt_date(scan["scan_date"])}</b> (data through that day\'s close)'
                  f'<br><span class="mut small">Generated {html.escape(scan.get("run_at", ""))}</span></div>')
     mk = list(scan["markets"].items())
