@@ -1,6 +1,6 @@
 {
  "scan_date": "2026-11-20",
- "run_at": "2026-11-23T10:06:28+08:00",
+ "run_at": "2026-11-23T17:18:54+08:00",
  "fresh_n": 5,
  "markets": {
   "PSEi": {
@@ -31,10 +31,13 @@
     "PSE:MONDE": 6.2,
     "PSE:ACEN": 2.28,
     "PSE:CNPF": 27.5,
-    "PSE:GTCAP": 460
+    "PSE:GTCAP": 460,
+    "PSE:DMC": 6.2,
+    "PSE:SCC": 8.34,
+    "PSE:PLUS": 5.01
    },
-   "label": "PSEi (27 of 30 stocks scanned so far)",
-   "total": 27,
+   "label": "PSEi (30 stocks)",
+   "total": 30,
    "ma_bull": 13,
    "hma_up": 7,
    "rows": [
@@ -252,13 +255,75 @@
   },
   "HSI": {
    "prices": {
-    "HKEX:700": 344
+    "HKEX:700": 344,
+    "HKEX:9988": 83.35,
+    "HKEX:1810": 27.64,
+    "HKEX:981": 49.12,
+    "HKEX:992": 16.35,
+    "HKEX:3690": 66.5,
+    "HKEX:1347": 75.1,
+    "HKEX:1299": 74.2,
+    "HKEX:939": 10.48,
+    "HKEX:5": 129.2
    },
-   "label": "HSI (1 of 50 stocks scanned so far)",
-   "total": 1,
-   "ma_bull": 0,
-   "hma_up": 0,
-   "rows": []
+   "label": "HSI (10 of 50 stocks scanned so far)",
+   "total": 10,
+   "ma_bull": 5,
+   "hma_up": 2,
+   "rows": [
+    {
+     "tv": "HKEX:981",
+     "symbol": "981",
+     "name": "SMIC",
+     "close": 49.12,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 1,
+       "px": 50.5,
+       "date": "2026-11-19"
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 10,
+       "px": 45.58,
+       "date": "2026-11-06"
+      }
+     ],
+     "best": 1,
+     "fresh": true,
+     "above_hma": true,
+     "gap_pct": 2.28,
+     "earnings": null,
+     "fund": null
+    },
+    {
+     "tv": "HKEX:1347",
+     "symbol": "1347",
+     "name": "Hua Hong Semiconductor",
+     "close": 75.1,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 3,
+       "px": 74.6,
+       "date": "2026-11-17"
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 11,
+       "px": 67.3,
+       "date": "2026-11-05"
+      }
+     ],
+     "best": 3,
+     "fresh": true,
+     "above_hma": false,
+     "gap_pct": 6.86,
+     "earnings": null,
+     "fund": null
+    }
+   ]
   }
  }
 }
