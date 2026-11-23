@@ -1,6 +1,6 @@
 {
  "scan_date": "2026-11-20",
- "run_at": "2026-11-23T17:18:54+08:00",
+ "run_at": "2026-11-23T17:20:56+08:00",
  "fresh_n": 5,
  "markets": {
   "PSEi": {
@@ -264,11 +264,19 @@
     "HKEX:1347": 75.1,
     "HKEX:1299": 74.2,
     "HKEX:939": 10.48,
-    "HKEX:5": 129.2
+    "HKEX:5": 129.2,
+    "HKEX:883": 21.7,
+    "HKEX:3750": 335,
+    "HKEX:2269": 40.96,
+    "HKEX:2318": 49.7,
+    "HKEX:1398": 7.885,
+    "HKEX:1211": 62.35,
+    "HKEX:2359": 181.5,
+    "HKEX:2628": 21.52
    },
-   "label": "HSI (10 of 50 stocks scanned so far)",
-   "total": 10,
-   "ma_bull": 5,
+   "label": "HSI (18 of 50 stocks scanned so far)",
+   "total": 18,
+   "ma_bull": 8,
    "hma_up": 2,
    "rows": [
     {
@@ -320,6 +328,46 @@
      "fresh": true,
      "above_hma": false,
      "gap_pct": 6.86,
+     "earnings": null,
+     "fund": null
+    },
+    {
+     "tv": "HKEX:2359",
+     "symbol": "2359",
+     "name": "WuXi AppTec",
+     "close": 181.5,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 5,
+       "px": 191.6,
+       "date": "2026-11-13"
+      }
+     ],
+     "best": 5,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 0.43,
+     "earnings": null,
+     "fund": null
+    },
+    {
+     "tv": "HKEX:2318",
+     "symbol": "2318",
+     "name": "Ping An",
+     "close": 49.7,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 10,
+       "px": 53.15,
+       "date": "2026-11-06"
+      }
+     ],
+     "best": 10,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 1.54,
      "earnings": null,
      "fund": null
     }
