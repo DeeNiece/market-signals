@@ -1,6 +1,6 @@
 {
  "scan_date": "2026-11-20",
- "run_at": "2026-11-23T17:23:09+08:00",
+ "run_at": "2026-11-24T08:07:16+08:00",
  "fresh_n": 5,
  "markets": {
   "PSEi": {
@@ -288,13 +288,28 @@
     "HKEX:9961": 325.4,
     "HKEX:669": 131.1,
     "HKEX:2020": 81.05,
+    "HKEX:1378": 17.27,
     "HKEX:1093": 7.92,
-    "HKEX:3968": 53.75
+    "HKEX:3968": 53.75,
+    "HKEX:2388": 46.5,
+    "HKEX:175": 13.27,
+    "HKEX:1088": 42,
+    "HKEX:386": 4.665,
+    "HKEX:300": 103,
+    "HKEX:2338": 20.62,
+    "HKEX:1109": 27.92,
+    "HKEX:16": 107,
+    "HKEX:27": 32.8,
+    "HKEX:3993": 10.26,
+    "HKEX:2382": 58.5,
+    "HKEX:2319": 22.04,
+    "HKEX:1": 65.15,
+    "HKEX:1177": 5.105
    },
-   "label": "HSI (35 of 50 stocks scanned so far)",
-   "total": 35,
-   "ma_bull": 20,
-   "hma_up": 4,
+   "label": "Hang Seng Index constituents, top 50 by 30-day value traded",
+   "total": 50,
+   "ma_bull": 29,
+   "hma_up": 6,
    "rows": [
     {
      "tv": "HKEX:981",
@@ -415,6 +430,26 @@
      "fund": null
     },
     {
+     "tv": "HKEX:1177",
+     "symbol": "1177",
+     "name": "Sino Biopharmaceutical",
+     "close": 5.105,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 7,
+       "px": 5.535,
+       "date": "2026-11-11"
+      }
+     ],
+     "best": 7,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 4.16,
+     "earnings": null,
+     "fund": null
+    },
+    {
      "tv": "HKEX:9992",
      "symbol": "9992",
      "name": "Pop Mart",
@@ -451,6 +486,26 @@
      "fresh": false,
      "above_hma": false,
      "gap_pct": 0.48,
+     "earnings": null,
+     "fund": null
+    },
+    {
+     "tv": "HKEX:1088",
+     "symbol": "1088",
+     "name": "China Shenhua",
+     "close": 42,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 9,
+       "px": 43.68,
+       "date": "2026-11-09"
+      }
+     ],
+     "best": 9,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 1.83,
      "earnings": null,
      "fund": null
     },
@@ -511,6 +566,26 @@
      "fresh": false,
      "above_hma": false,
      "gap_pct": 0.62,
+     "earnings": null,
+     "fund": null
+    },
+    {
+     "tv": "HKEX:1",
+     "symbol": "1",
+     "name": "CK Hutchison",
+     "close": 65.15,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 11,
+       "px": 71.25,
+       "date": "2026-11-05"
+      }
+     ],
+     "best": 11,
+     "fresh": false,
+     "above_hma": false,
+     "gap_pct": 1.94,
      "earnings": null,
      "fund": null
     },
