@@ -4,7 +4,7 @@ Twice-weekly bullish signal scan of PSEi and HSI stocks on the D1 chart. Publish
 
 - Signals: simple MA 9/26 bullish cross, and bullish turn of the 26-period Hull MA.
 - Candles: closed daily candles only.
-- Schedule: once a week, after the Friday close.
+- Schedule: twice a week, after the Tuesday and Friday close.
 - `scripts/run.py` computes the signals from an input file and rebuilds `index.html` and `archive/`.
 - `data/scans/` keeps the result of every scan.
 
