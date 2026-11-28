@@ -332,12 +332,12 @@ def table(rows, scan_date=None):
         c = "up" if x["pct"] > 0 else ("dn" if x["pct"] < 0 else "")
         d = f" ({fmt_short(x['date'])})" if x.get("date") else ""
         return f'<span class="{c}">{x["pct"]:+.1f}%</span><br><span class="mut small">{bars_txt(x["bars_ago"])}{d}</span>'
-    t = ['<div class="wrap"><table><tr><th>Stock</th><th>Signals</th><th>Since MA cross</th><th>Since HMA turn</th><th>Price vs HMA 26</th><th>9 vs 26 SMA</th><th>vs 52-wk high</th><th>Earnings</th></tr>']
+    t = ['<div class="wrap"><table><tr><th>Stock</th><th>Signals</th><th>Since MA cross</th><th>Since HMA turn</th><th>Price vs HMA 26</th><th>9 vs 26 SMA</th><th>Distance from 52-wk high</th><th>Earnings</th></tr>']
     for r in rows:
         link = "https://www.tradingview.com/chart/?symbol=" + r["tv"].replace(":", "%3A")
         sig = "".join(f'<span class="tag">{sig_txt(s, r["close"])}</span>' for s in r["signals"])
         vs = '<span class="up">Above</span>' if r["above_hma"] else '<span class="dn">Below</span>'
-        fh = f'<span class="{"dn" if r.get("from_high") is not None and r["from_high"] < -0.05 else ""}">{r["from_high"]:+.1f}%</span>' if r.get("from_high") is not None else "&ndash;"
+        fh = (f'{abs(r["from_high"]):.1f}% below high' if r["from_high"] < -0.05 else "At 52-wk high") if r.get("from_high") is not None else "&ndash;"
         e = f'<span class="warn">{html.escape(r["earnings"])}</span>' if r["earnings"] else "&ndash;"
         t.append(
             f'<tr class="s"><td><a href="{link}" target="_blank" rel="noopener">{html.escape(r["symbol"])}</a>'
@@ -347,7 +347,7 @@ def table(rows, scan_date=None):
             f"<td data-l=\"Since MA cross\">{since_cell((r.get('since') or {}).get('cross'))}</td>"
             f"<td data-l=\"Since HMA turn\">{since_cell((r.get('since') or {}).get('turn'))}</td>"
             f"<td data-l=\"Price vs HMA 26\">{vs}</td>"
-            f"<td data-l=\"9 vs 26 SMA\"><span class=\"{'up' if r['gap_pct'] > 0 else ('dn' if r['gap_pct'] < 0 else '')}\">{r['gap_pct']:+.2f}%</span></td><td data-l=\"vs 52-wk high\">{fh}</td><td data-l=\"Earnings\">{e}</td></tr>")
+            f"<td data-l=\"9 vs 26 SMA\"><span class=\"{'up' if r['gap_pct'] > 0 else ('dn' if r['gap_pct'] < 0 else '')}\">{r['gap_pct']:+.2f}%</span></td><td data-l=\"Distance from 52-wk high\">{fh}</td><td data-l=\"Earnings\">{e}</td></tr>")
         t.append(fund_html(r.get("fund"), scan_date) if scan_date else "")
     t.append("</table></div>")
     return "".join(t)
@@ -777,7 +777,7 @@ def page(scan, past, depth):
                  "<p><b>MA cross:</b> the simple 9-period average closes above the simple 26-period average, and is still above it at the latest close.</p>"
                  "<p><b>HMA turn:</b> the 26-period Hull MA stops falling and starts rising, and is still rising at the latest close. "
                  "No minimum size is applied, so a turn on a flat line can be weak.</p>"
-                 "<p><b>Price vs HMA 26:</b> whether the latest close is above the Hull MA. <b>9 vs 26 SMA:</b> the gap between the two averages. <b>Since MA cross / Since HMA turn:</b> price change from the close on the day of the last 9/26 cross, and of the last Hull MA turn up, to the latest close. Shown while the cross or turn is still in force, even if it is older than 12 candles. <b>vs 52-wk high:</b> how far the latest close is below the highest price of the last 52 weeks.</p>"
+                 "<p><b>Price vs HMA 26:</b> whether the latest close is above the Hull MA. <b>9 vs 26 SMA:</b> the gap between the two averages. <b>Since MA cross / Since HMA turn:</b> price change from the close on the day of the last 9/26 cross, and of the last Hull MA turn up, to the latest close. Shown while the cross or turn is still in force, even if it is older than 12 candles. <b>Distance from 52-wk high:</b> how far the latest close is below the highest price of the last 52 weeks.</p>"
                  "<p><b>Earnings:</b> shown only when results are due within 7 days of the scan date, because signals around earnings are less reliable.</p>"
                  "<p><b>Fundamentals line:</b> numbers from TradingView. EPS and revenue vs est. compare the last report with analyst estimates. "
                  "Revenue 12m and EPS 12m are growth over the last twelve months. n/m means not meaningful (a tiny base gives huge percentages). "
