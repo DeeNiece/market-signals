@@ -126,14 +126,30 @@ def load_highs():
     return json.load(open(f)).get("high", {}) if os.path.exists(f) else {}
 
 
+MON_FILE = os.path.join(ROOT, "data", "monitor.json")
+
+
+def load_monitor():
+    return json.load(open(MON_FILE)) if os.path.exists(MON_FILE) else {"snapshots": {}}
+
+
+def prev_members(mon, scan_date, market):
+    ds = sorted(d for d in mon["snapshots"] if d < scan_date)
+    return mon["snapshots"][ds[-1]].get(market, {}) if ds else {}
+
+
 def run_scan(inp):
     highs = load_highs()
+    mon = load_monitor()
+    all_members = {}
     scan_date = max(st["last_date"] for m in inp["markets"].values() for st in m["stocks"])
     d0 = dt.date.fromisoformat(scan_date)
     out = {"scan_date": scan_date, "run_at": inp.get("run_at", ""), "fresh_n": FRESH, "markets": {}}
     for name, m in inp["markets"].items():
         rows, ma_bull, hma_up, total = [], 0, 0, 0
         prices = {}
+        prev = prev_members(mon, scan_date, name)
+        members, monitored, removed = {}, [], []
         for st in m["stocks"]:
             if st.get("closes"):
                 prices[st["tv"]] = round(st["closes"][-1], 4)
@@ -143,16 +159,25 @@ def run_scan(inp):
             total += 1
             ma_bull += r["ma_bull_now"]
             hma_up += r["hma_up_now"]
-            if not r["signals"]:
-                continue
             cal = m.get("dates") or []
             since = {}
             for key, ago in (("cross", r["last_cross"]), ("turn", r["last_turn"])):
                 if ago is not None and len(st["closes"]) > ago:
                     px = round(st["closes"][-1 - ago], 4)
-                    since[key] = {"bars_ago": ago, "px": px, "pct": round((r["close"] / px - 1) * 100, 1)}
+                    since[key] = {"bars_ago": ago, "px": px, "diff": round(r["close"] - px, 4),
+                                  "pct": round((r["close"] / px - 1) * 100, 1)}
                     if len(cal) > ago and cal[-1] == st["last_date"]:
                         since[key]["date"] = cal[-1 - ago]
+            was = prev.get(st["tv"])
+            active = r["ma_bull_now"] or r["hma_up_now"]
+            if was and not active:
+                removed.append({"tv": st["tv"], "symbol": st["symbol"], "name": st["name"], "close": r["close"],
+                                "entered": was["entered"], "entry_close": was["entry_close"],
+                                "pct_since_added": round((r["close"] / was["entry_close"] - 1) * 100, 1),
+                                "last": was.get("last", {})})
+                continue
+            if not r["signals"] and not was:
+                continue
             e = st.get("earnings")
             soon = False
             if e:
@@ -163,22 +188,41 @@ def run_scan(inp):
                     x["px"] = round(st["closes"][-1 - x["bars_ago"]], 4)
                 if len(cal) > x["bars_ago"] and cal[-1] == st["last_date"]:
                     x["date"] = cal[-1 - x["bars_ago"]]
-            best = min(x["bars_ago"] for x in r["signals"])
             hi = max([highs[st["tv"]]] + st["closes"]) if st["tv"] in highs else None
             from_high = round((r["close"] / hi - 1) * 100, 1) if hi else None
-            rows.append({
+            base = {
                 "tv": st["tv"], "symbol": st["symbol"], "name": st["name"],
-                "close": r["close"], "signals": r["signals"], "best": best,
-                "fresh": best < FRESH, "since": since, "above_hma": r["above_hma"], "gap_pct": r["gap_pct"], "from_high": from_high,
+                "close": r["close"], "since": since, "above_hma": r["above_hma"], "gap_pct": r["gap_pct"], "from_high": from_high,
                 "earnings": e if soon else None,
                 "fund": fund_clean(st.get("fund")),
-            })
+            }
+            if r["signals"]:
+                best = min(x["bars_ago"] for x in r["signals"])
+                rows.append(dict(base, signals=r["signals"], best=best, fresh=best < FRESH))
+            else:
+                sigs = []
+                for key, typ in (("cross", "MA cross"), ("turn", "HMA turn")):
+                    if key in since:
+                        sg = {"type": typ, "bars_ago": since[key]["bars_ago"], "px": since[key]["px"]}
+                        if "date" in since[key]:
+                            sg["date"] = since[key]["date"]
+                        sigs.append(sg)
+                monitored.append(dict(base, signals=sigs, best=min([x["bars_ago"] for x in sigs] or [99]), fresh=False))
+            members[st["tv"]] = {"entered": was["entered"] if was else scan_date,
+                                 "entry_close": was["entry_close"] if was else r["close"],
+                                 "last": {k: {"pct": v["pct"], "px": v["px"]} for k, v in since.items()}}
         rows.sort(key=lambda x: (x["best"], -len(x["signals"]), x["symbol"]))
+        monitored.sort(key=lambda x: (x["best"], x["symbol"]))
+        all_members[name] = members
         out["markets"][name] = {
+            "monitored": monitored, "removed": removed,
             "prices": prices,
             "label": m.get("label", name), "total": total,
             "ma_bull": ma_bull, "hma_up": hma_up, "rows": rows,
         }
+    mon["snapshots"][scan_date] = all_members
+    with open(MON_FILE, "w") as fh:
+        json.dump(mon, fh, indent=1)
     return out
 
 
@@ -331,7 +375,8 @@ def table(rows, scan_date=None):
             return "&ndash;"
         c = "up" if x["pct"] > 0 else ("dn" if x["pct"] < 0 else "")
         d = f" ({fmt_short(x['date'])})" if x.get("date") else ""
-        return f'<span class="{c}">{x["pct"]:+.1f}%</span><br><span class="mut small">{bars_txt(x["bars_ago"])}{d}</span>'
+        df = f' ({x["diff"]:+,.2f})' if x.get("diff") is not None else ""
+        return f'<span class="{c}">{x["pct"]:+.1f}%{df}</span><br><span class="mut small">{bars_txt(x["bars_ago"])}{d}</span>'
     t = ['<div class="wrap"><table><tr><th>Stock</th><th>Signals</th><th>Since MA cross</th><th>Since HMA turn</th><th>Price vs HMA 26</th><th>9 vs 26 SMA</th><th>Distance from 52-wk high</th><th>Earnings</th></tr>']
     for r in rows:
         link = "https://www.tradingview.com/chart/?symbol=" + r["tv"].replace(":", "%3A")
@@ -354,6 +399,23 @@ def table(rows, scan_date=None):
 
 
 HORIZONS = (7, 14, 28)
+
+
+def removed_html(rem, scan_date):
+    if not rem:
+        return '<p class="mut">None in this scan.</p>'
+    t = ['<div class="wrap"><table><tr><th>Stock</th><th>Reason</th><th>Last close</th><th>Since added</th></tr>']
+    for r in rem:
+        link = "https://www.tradingview.com/chart/?symbol=" + r["tv"].replace(":", "%3A")
+        c = "up" if r["pct_since_added"] > 0 else ("dn" if r["pct_since_added"] < 0 else "")
+        t.append(
+            f'<tr class="s"><td><a href="{link}" target="_blank" rel="noopener">{html.escape(r["symbol"])}</a>'
+            f'<br><span class="mut small">{html.escape(r["name"])}</span></td>'
+            '<td data-l="Reason"><span class="tag">Removed from monitoring</span><br><span class="mut small">9 SMA is below the 26 SMA and the Hull MA 26 is falling</span></td>'
+            f'<td data-l="Last close">{fmt_px(r["close"])}</td>'
+            f'<td data-l="Since added"><span class="{c}">{r["pct_since_added"]:+.1f}%</span><br><span class="mut small">added {fmt_short(r["entered"])} at {fmt_px(r["entry_close"])}</span></td></tr>')
+    t.append("</table></div>")
+    return "".join(t)
 
 
 def _scans_asc():
@@ -770,6 +832,10 @@ def page(scan, past, depth):
         fn = scan.get("fresh_n", 3)
         parts.append(f"<h3>Fresh signals (last {fn} candles)</h3>" + table(fresh, scan["scan_date"]))
         parts.append(f"<h3>Earlier signals ({fn + 1} to {WINDOW} candles ago)</h3>" + table(older, scan["scan_date"]))
+        mon_rows = m.get("monitored") or []
+        if mon_rows:
+            parts.append(f"<h3>Still monitored (signal older than {WINDOW} candles, MA or Hull MA still bullish)</h3>" + table(mon_rows, scan["scan_date"]))
+        parts.append("<h3>Removed from monitoring</h3>" + removed_html(m.get("removed") or [], scan["scan_date"]))
         parts.append("</section>")
     parts.append(f'<section class="panel" id="p{len(mk)}" role="tabpanel">{track_html(scans_all)}</section>')
     parts.append(f'<section class="panel" id="p{len(mk) + 1}" role="tabpanel">{analysis_html(scans_all)}</section>')
@@ -778,6 +844,7 @@ def page(scan, past, depth):
                  "<p><b>HMA turn:</b> the 26-period Hull MA stops falling and starts rising, and is still rising at the latest close. "
                  "No minimum size is applied, so a turn on a flat line can be weak.</p>"
                  "<p><b>Price vs HMA 26:</b> whether the latest close is above the Hull MA. <b>9 vs 26 SMA:</b> the gap between the two averages. <b>Prices:</b> raw daily closes, not adjusted for dividends. A stock that went ex-dividend in the last 10 weeks can look weaker here than on a dividend-adjusted chart. <b>Since MA cross / Since HMA turn:</b> price change from the close on the day of the last 9/26 cross, and of the last Hull MA turn up, to the latest close. Shown while the cross or turn is still in force, even if it is older than 12 candles. <b>Distance from 52-wk high:</b> how far the latest close is below the highest price of the last 52 weeks.</p>"
+                 "<p><b>Monitoring:</b> a stock is added when it shows a fresh or earlier signal. It stays on the list while the 9 SMA is above the 26 SMA or the Hull MA 26 is rising, even after its signal is older than 12 candles. When the 9 SMA is below the 26 SMA and the Hull MA is falling, it is removed and shown under Removed from monitoring for that scan.</p>"
                  "<p><b>Earnings:</b> shown only when results are due within 7 days of the scan date, because signals around earnings are less reliable.</p>"
                  "<p><b>Fundamentals line:</b> numbers from TradingView. EPS and revenue vs est. compare the last report with analyst estimates. "
                  "Revenue 12m and EPS 12m are growth over the last twelve months. n/m means not meaningful (a tiny base gives huge percentages). "

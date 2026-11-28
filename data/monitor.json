@@ -1,0 +1,70 @@
+{
+ "snapshots": {
+  "2026-11-26": {
+   "PSEi": {
+    "PSE:ICT": {
+     "entered": "2026-11-26",
+     "entry_close": 770.0,
+     "last": {}
+    },
+    "PSE:SM": {
+     "entered": "2026-11-11",
+     "entry_close": 570,
+     "last": {}
+    },
+    "PSE:PGOLD": {
+     "entered": "2026-11-13",
+     "entry_close": 40.5,
+     "last": {}
+    },
+    "PSE:EMI": {
+     "entered": "2026-11-13",
+     "entry_close": 15.16,
+     "last": {}
+    },
+    "PSE:LTG": {
+     "entered": "2026-11-11",
+     "entry_close": 15.4,
+     "last": {}
+    },
+    "PSE:CBC": {
+     "entered": "2026-11-11",
+     "entry_close": 48.05,
+     "last": {}
+    },
+    "PSE:MONDE": {
+     "entered": "2026-11-11",
+     "entry_close": 6.38,
+     "last": {}
+    }
+   },
+   "HSI": {
+    "HKEX:981": {
+     "entered": "2026-11-11",
+     "entry_close": 49,
+     "last": {}
+    },
+    "HKEX:1347": {
+     "entered": "2026-11-11",
+     "entry_close": 75.15,
+     "last": {}
+    },
+    "HKEX:3988": {
+     "entered": "2026-11-11",
+     "entry_close": 6.215,
+     "last": {}
+    },
+    "HKEX:1177": {
+     "entered": "2026-11-11",
+     "entry_close": 5.535,
+     "last": {}
+    },
+    "HKEX:9992": {
+     "entered": "2026-11-11",
+     "entry_close": 145,
+     "last": {}
+    }
+   }
+  }
+ }
+}
