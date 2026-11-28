@@ -1,10 +1,41 @@
 {
  "scan_date": "2026-11-27",
- "run_at": "2026-11-28 13:05 HKT (rebuilt from the 27 Nov close)",
+ "run_at": "2026-11-28 13:10 HKT (rebuilt from the 27 Nov close)",
  "fresh_n": 5,
  "markets": {
   "PSEi": {
-   "monitored": [],
+   "monitored": [
+    {
+     "tv": "PSE:MONDE",
+     "symbol": "MONDE",
+     "name": "Monde Nissin",
+     "close": 6.4,
+     "since": {
+      "cross": {
+       "bars_ago": 12,
+       "px": 6.1228,
+       "diff": 0.2772,
+       "pct": 4.5,
+       "date": "2026-11-11"
+      }
+     },
+     "above_hma": true,
+     "gap_pct": 3.47,
+     "from_high": -14.1,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 12,
+       "px": 6.1228,
+       "date": "2026-11-11"
+      }
+     ],
+     "best": 12,
+     "fresh": false
+    }
+   ],
    "removed": [],
    "prices": {
     "PSE:ICT": 826.0,
@@ -110,43 +141,6 @@
        "type": "HMA turn",
        "bars_ago": 0,
        "px": 62.75,
-       "date": "2026-11-27"
-      }
-     ],
-     "best": 0,
-     "fresh": true
-    },
-    {
-     "tv": "PSE:MONDE",
-     "symbol": "MONDE",
-     "name": "Monde Nissin",
-     "close": 6.4,
-     "since": {
-      "cross": {
-       "bars_ago": 12,
-       "px": 6.38,
-       "diff": 0.02,
-       "pct": 0.3,
-       "date": "2026-11-11"
-      },
-      "turn": {
-       "bars_ago": 0,
-       "px": 6.4,
-       "diff": 0.0,
-       "pct": 0.0,
-       "date": "2026-11-27"
-      }
-     },
-     "above_hma": true,
-     "gap_pct": 2.24,
-     "from_high": -14.1,
-     "earnings": null,
-     "fund": null,
-     "signals": [
-      {
-       "type": "HMA turn",
-       "bars_ago": 0,
-       "px": 6.4,
        "date": "2026-11-27"
       }
      ],
