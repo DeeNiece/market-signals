@@ -65,6 +65,182 @@
      "last": {}
     }
    }
+  },
+  "2026-11-27": {
+   "PSEi": {
+    "PSE:ICT": {
+     "entered": "2026-11-26",
+     "entry_close": 770.0,
+     "last": {
+      "turn": {
+       "pct": 7.3,
+       "px": 770.0
+      }
+     }
+    },
+    "PSE:SM": {
+     "entered": "2026-11-11",
+     "entry_close": 570,
+     "last": {
+      "turn": {
+       "pct": 3.2,
+       "px": 571.0
+      }
+     }
+    },
+    "PSE:MBT": {
+     "entered": "2026-11-27",
+     "entry_close": 62.75,
+     "last": {
+      "turn": {
+       "pct": 0.0,
+       "px": 62.75
+      }
+     }
+    },
+    "PSE:EMI": {
+     "entered": "2026-11-13",
+     "entry_close": 15.16,
+     "last": {
+      "cross": {
+       "pct": -1.2,
+       "px": 15.5
+      },
+      "turn": {
+       "pct": 0.0,
+       "px": 15.32
+      }
+     }
+    },
+    "PSE:LTG": {
+     "entered": "2026-11-11",
+     "entry_close": 15.4,
+     "last": {
+      "cross": {
+       "pct": 0.8,
+       "px": 15.32
+      }
+     }
+    },
+    "PSE:CBC": {
+     "entered": "2026-11-11",
+     "entry_close": 48.05,
+     "last": {
+      "cross": {
+       "pct": 0.0,
+       "px": 50
+      },
+      "turn": {
+       "pct": 2.9,
+       "px": 48.6
+      }
+     }
+    },
+    "PSE:PGOLD": {
+     "entered": "2026-11-13",
+     "entry_close": 40.5,
+     "last": {
+      "cross": {
+       "pct": -0.4,
+       "px": 39.75
+      },
+      "turn": {
+       "pct": -2.2,
+       "px": 40.5
+      }
+     }
+    },
+    "PSE:MONDE": {
+     "entered": "2026-11-11",
+     "entry_close": 6.38,
+     "last": {
+      "cross": {
+       "pct": 0.3,
+       "px": 6.38
+      },
+      "turn": {
+       "pct": 0.0,
+       "px": 6.4
+      }
+     }
+    }
+   },
+   "HSI": {
+    "HKEX:981": {
+     "entered": "2026-11-11",
+     "entry_close": 49,
+     "last": {
+      "cross": {
+       "pct": 5.7,
+       "px": 50.5
+      },
+      "turn": {
+       "pct": 0.0,
+       "px": 53.4
+      }
+     }
+    },
+    "HKEX:992": {
+     "entered": "2026-11-27",
+     "entry_close": 18.3,
+     "last": {
+      "turn": {
+       "pct": 0.0,
+       "px": 18.3
+      }
+     }
+    },
+    "HKEX:1347": {
+     "entered": "2026-11-11",
+     "entry_close": 75.15,
+     "last": {
+      "cross": {
+       "pct": 4.8,
+       "px": 74.6
+      }
+     }
+    },
+    "HKEX:9992": {
+     "entered": "2026-11-11",
+     "entry_close": 145,
+     "last": {
+      "cross": {
+       "pct": -2.6,
+       "px": 145
+      }
+     }
+    },
+    "HKEX:3988": {
+     "entered": "2026-11-11",
+     "entry_close": 6.215,
+     "last": {
+      "cross": {
+       "pct": -2.2,
+       "px": 6.28
+      }
+     }
+    },
+    "HKEX:2020": {
+     "entered": "2026-11-27",
+     "entry_close": 82.4,
+     "last": {
+      "turn": {
+       "pct": 0.0,
+       "px": 82.4
+      }
+     }
+    },
+    "HKEX:1177": {
+     "entered": "2026-11-11",
+     "entry_close": 5.535,
+     "last": {
+      "cross": {
+       "pct": 2.7,
+       "px": 5.535
+      }
+     }
+    }
+   }
   }
  }
 }

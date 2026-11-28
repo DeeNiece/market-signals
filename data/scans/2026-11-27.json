@@ -1,0 +1,615 @@
+{
+ "scan_date": "2026-11-27",
+ "run_at": "2026-11-28 13:05 HKT (rebuilt from the 27 Nov close)",
+ "fresh_n": 5,
+ "markets": {
+  "PSEi": {
+   "monitored": [],
+   "removed": [],
+   "prices": {
+    "PSE:ICT": 826.0,
+    "PSE:SM": 589.5,
+    "PSE:BDO": 120.8,
+    "PSE:BPI": 98.0,
+    "PSE:MER": 395.2,
+    "PSE:SMPH": 16.96,
+    "PSE:AC": 530.0,
+    "PSE:MBT": 62.75,
+    "PSE:TEL": 940.5,
+    "PSE:EMI": 15.32,
+    "PSE:ALI": 12.76,
+    "PSE:GLO": 1285.0,
+    "PSE:AEV": 33.25,
+    "PSE:JFC": 147.0,
+    "PSE:LTG": 15.44,
+    "PSE:SMC": 63.0,
+    "PSE:AREIT": 34.0,
+    "PSE:CBC": 50.0,
+    "PSE:JGS": 16.14,
+    "PSE:URC": 61.0,
+    "PSE:RCR": 6.01,
+    "PSE:MYNLD": 14.9,
+    "PSE:PGOLD": 39.6,
+    "PSE:MONDE": 6.4,
+    "PSE:ACEN": 2.16,
+    "PSE:CNPF": 27.45,
+    "PSE:GTCAP": 434.0,
+    "PSE:DMC": 6.43,
+    "PSE:SCC": 8.87,
+    "PSE:PLUS": 4.68
+   },
+   "label": "PSEi (30 stocks)",
+   "total": 30,
+   "ma_bull": 10,
+   "hma_up": 8,
+   "rows": [
+    {
+     "tv": "PSE:EMI",
+     "symbol": "EMI",
+     "name": "Emperador",
+     "close": 15.32,
+     "since": {
+      "cross": {
+       "bars_ago": 6,
+       "px": 15.5,
+       "diff": -0.18,
+       "pct": -1.2,
+       "date": "2026-11-19"
+      },
+      "turn": {
+       "bars_ago": 0,
+       "px": 15.32,
+       "diff": 0.0,
+       "pct": 0.0,
+       "date": "2026-11-27"
+      }
+     },
+     "above_hma": true,
+     "gap_pct": 0.25,
+     "from_high": -6.2,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 6,
+       "px": 15.5,
+       "date": "2026-11-19"
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 0,
+       "px": 15.32,
+       "date": "2026-11-27"
+      }
+     ],
+     "best": 0,
+     "fresh": true
+    },
+    {
+     "tv": "PSE:MBT",
+     "symbol": "MBT",
+     "name": "Metropolitan Bank & Trust",
+     "close": 62.75,
+     "since": {
+      "turn": {
+       "bars_ago": 0,
+       "px": 62.75,
+       "diff": 0.0,
+       "pct": 0.0,
+       "date": "2026-11-27"
+      }
+     },
+     "above_hma": true,
+     "gap_pct": -0.07,
+     "from_high": -19.8,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 0,
+       "px": 62.75,
+       "date": "2026-11-27"
+      }
+     ],
+     "best": 0,
+     "fresh": true
+    },
+    {
+     "tv": "PSE:MONDE",
+     "symbol": "MONDE",
+     "name": "Monde Nissin",
+     "close": 6.4,
+     "since": {
+      "cross": {
+       "bars_ago": 12,
+       "px": 6.38,
+       "diff": 0.02,
+       "pct": 0.3,
+       "date": "2026-11-11"
+      },
+      "turn": {
+       "bars_ago": 0,
+       "px": 6.4,
+       "diff": 0.0,
+       "pct": 0.0,
+       "date": "2026-11-27"
+      }
+     },
+     "above_hma": true,
+     "gap_pct": 2.24,
+     "from_high": -14.1,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 0,
+       "px": 6.4,
+       "date": "2026-11-27"
+      }
+     ],
+     "best": 0,
+     "fresh": true
+    },
+    {
+     "tv": "PSE:ICT",
+     "symbol": "ICT",
+     "name": "International Container Terminal Services",
+     "close": 826.0,
+     "since": {
+      "turn": {
+       "bars_ago": 1,
+       "px": 770.0,
+       "diff": 56.0,
+       "pct": 7.3,
+       "date": "2026-11-26"
+      }
+     },
+     "above_hma": true,
+     "gap_pct": -6.23,
+     "from_high": -21.3,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 1,
+       "px": 770.0,
+       "date": "2026-11-26"
+      }
+     ],
+     "best": 1,
+     "fresh": true
+    },
+    {
+     "tv": "PSE:SM",
+     "symbol": "SM",
+     "name": "SM Investments",
+     "close": 589.5,
+     "since": {
+      "turn": {
+       "bars_ago": 1,
+       "px": 571.0,
+       "diff": 18.5,
+       "pct": 3.2,
+       "date": "2026-11-26"
+      }
+     },
+     "above_hma": true,
+     "gap_pct": 1.04,
+     "from_high": -22.2,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 1,
+       "px": 571.0,
+       "date": "2026-11-26"
+      }
+     ],
+     "best": 1,
+     "fresh": true
+    },
+    {
+     "tv": "PSE:PGOLD",
+     "symbol": "PGOLD",
+     "name": "Puregold Price Club",
+     "close": 39.6,
+     "since": {
+      "cross": {
+       "bars_ago": 5,
+       "px": 39.75,
+       "diff": -0.15,
+       "pct": -0.4,
+       "date": "2026-11-20"
+      },
+      "turn": {
+       "bars_ago": 10,
+       "px": 40.5,
+       "diff": -0.9,
+       "pct": -2.2,
+       "date": "2026-11-13"
+      }
+     },
+     "above_hma": false,
+     "gap_pct": 0.48,
+     "from_high": -19.3,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 5,
+       "px": 39.75,
+       "date": "2026-11-20"
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 10,
+       "px": 40.5,
+       "date": "2026-11-13"
+      }
+     ],
+     "best": 5,
+     "fresh": false
+    },
+    {
+     "tv": "PSE:LTG",
+     "symbol": "LTG",
+     "name": "LT Group",
+     "close": 15.44,
+     "since": {
+      "cross": {
+       "bars_ago": 10,
+       "px": 15.32,
+       "diff": 0.12,
+       "pct": 0.8,
+       "date": "2026-11-13"
+      }
+     },
+     "above_hma": false,
+     "gap_pct": 1.44,
+     "from_high": -4.7,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 10,
+       "px": 15.32,
+       "date": "2026-11-13"
+      }
+     ],
+     "best": 10,
+     "fresh": false
+    },
+    {
+     "tv": "PSE:CBC",
+     "symbol": "CBC",
+     "name": "China Banking Corp",
+     "close": 50.0,
+     "since": {
+      "cross": {
+       "bars_ago": 11,
+       "px": 50,
+       "diff": 0.0,
+       "pct": 0.0,
+       "date": "2026-11-12"
+      },
+      "turn": {
+       "bars_ago": 15,
+       "px": 48.6,
+       "diff": 1.4,
+       "pct": 2.9,
+       "date": "2026-11-06"
+      }
+     },
+     "above_hma": false,
+     "gap_pct": 4.5,
+     "from_high": -29.6,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 11,
+       "px": 50,
+       "date": "2026-11-12"
+      }
+     ],
+     "best": 11,
+     "fresh": false
+    }
+   ]
+  },
+  "HSI": {
+   "monitored": [
+    {
+     "tv": "HKEX:1177",
+     "symbol": "1177",
+     "name": "Sino Biopharmaceutical",
+     "close": 5.685,
+     "since": {
+      "cross": {
+       "bars_ago": 12,
+       "px": 5.535,
+       "diff": 0.15,
+       "pct": 2.7,
+       "date": "2026-11-11"
+      }
+     },
+     "above_hma": true,
+     "gap_pct": 1.24,
+     "from_high": -22.1,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 12,
+       "px": 5.535,
+       "date": "2026-11-11"
+      }
+     ],
+     "best": 12,
+     "fresh": false
+    },
+    {
+     "tv": "HKEX:9992",
+     "symbol": "9992",
+     "name": "Pop Mart",
+     "close": 141.2,
+     "since": {
+      "cross": {
+       "bars_ago": 12,
+       "px": 145,
+       "diff": -3.8,
+       "pct": -2.6,
+       "date": "2026-11-11"
+      }
+     },
+     "above_hma": false,
+     "gap_pct": 1.06,
+     "from_high": -48.5,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 12,
+       "px": 145,
+       "date": "2026-11-11"
+      }
+     ],
+     "best": 12,
+     "fresh": false
+    }
+   ],
+   "removed": [],
+   "prices": {
+    "HKEX:700": 352.0,
+    "HKEX:9988": 88.3,
+    "HKEX:1810": 27.8,
+    "HKEX:981": 53.4,
+    "HKEX:992": 18.3,
+    "HKEX:3690": 67.85,
+    "HKEX:1347": 78.15,
+    "HKEX:1299": 75.05,
+    "HKEX:939": 10.13,
+    "HKEX:5": 129.9,
+    "HKEX:883": 21.42,
+    "HKEX:3750": 314.2,
+    "HKEX:2269": 44.02,
+    "HKEX:2318": 51.65,
+    "HKEX:1398": 7.625,
+    "HKEX:1211": 59.0,
+    "HKEX:2359": 195.7,
+    "HKEX:2628": 23.26,
+    "HKEX:2899": 24.76,
+    "HKEX:9999": 167.6,
+    "HKEX:388": 363.4,
+    "HKEX:9992": 141.2,
+    "HKEX:941": 77.75,
+    "HKEX:3988": 6.14,
+    "HKEX:1024": 20.96,
+    "HKEX:857": 9.705,
+    "HKEX:1801": 87.45,
+    "HKEX:9888": 62.65,
+    "HKEX:9618": 106.2,
+    "HKEX:6160": 256.6,
+    "HKEX:9961": 315.2,
+    "HKEX:669": 134.8,
+    "HKEX:2020": 82.4,
+    "HKEX:1378": 17.29,
+    "HKEX:1093": 8.035,
+    "HKEX:3968": 52.05,
+    "HKEX:2388": 45.6,
+    "HKEX:175": 13.35,
+    "HKEX:1088": 39.1,
+    "HKEX:386": 4.48,
+    "HKEX:300": 100.2,
+    "HKEX:2338": 21.72,
+    "HKEX:1109": 28.02,
+    "HKEX:16": 107.7,
+    "HKEX:27": 33.22,
+    "HKEX:3993": 11.3,
+    "HKEX:2382": 64.75,
+    "HKEX:2319": 21.36,
+    "HKEX:1": 64.2,
+    "HKEX:1177": 5.685
+   },
+   "label": "Hang Seng Index constituents, top 50 by 30-day value traded",
+   "total": 50,
+   "ma_bull": 11,
+   "hma_up": 3,
+   "rows": [
+    {
+     "tv": "HKEX:981",
+     "symbol": "981",
+     "name": "SMIC",
+     "close": 53.4,
+     "since": {
+      "cross": {
+       "bars_ago": 6,
+       "px": 50.5,
+       "diff": 2.9,
+       "pct": 5.7,
+       "date": "2026-11-19"
+      },
+      "turn": {
+       "bars_ago": 0,
+       "px": 53.4,
+       "diff": 0.0,
+       "pct": 0.0,
+       "date": "2026-11-27"
+      }
+     },
+     "above_hma": true,
+     "gap_pct": 3.78,
+     "from_high": -42.6,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 6,
+       "px": 50.5,
+       "date": "2026-11-19"
+      },
+      {
+       "type": "HMA turn",
+       "bars_ago": 0,
+       "px": 53.4,
+       "date": "2026-11-27"
+      }
+     ],
+     "best": 0,
+     "fresh": true
+    },
+    {
+     "tv": "HKEX:2020",
+     "symbol": "2020",
+     "name": "ANTA Sports",
+     "close": 82.4,
+     "since": {
+      "turn": {
+       "bars_ago": 0,
+       "px": 82.4,
+       "diff": 0.0,
+       "pct": 0.0,
+       "date": "2026-11-27"
+      }
+     },
+     "above_hma": false,
+     "gap_pct": 4.05,
+     "from_high": -7.2,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 0,
+       "px": 82.4,
+       "date": "2026-11-27"
+      }
+     ],
+     "best": 0,
+     "fresh": true
+    },
+    {
+     "tv": "HKEX:992",
+     "symbol": "992",
+     "name": "Lenovo",
+     "close": 18.3,
+     "since": {
+      "turn": {
+       "bars_ago": 0,
+       "px": 18.3,
+       "diff": 0.0,
+       "pct": 0.0,
+       "date": "2026-11-27"
+      }
+     },
+     "above_hma": true,
+     "gap_pct": -10.76,
+     "from_high": -51.7,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "HMA turn",
+       "bars_ago": 0,
+       "px": 18.3,
+       "date": "2026-11-27"
+      }
+     ],
+     "best": 0,
+     "fresh": true
+    },
+    {
+     "tv": "HKEX:1347",
+     "symbol": "1347",
+     "name": "Hua Hong Semiconductor",
+     "close": 78.15,
+     "since": {
+      "cross": {
+       "bars_ago": 8,
+       "px": 74.6,
+       "diff": 3.55,
+       "pct": 4.8,
+       "date": "2026-11-17"
+      }
+     },
+     "above_hma": true,
+     "gap_pct": 5.4,
+     "from_high": -64.4,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 8,
+       "px": 74.6,
+       "date": "2026-11-17"
+      }
+     ],
+     "best": 8,
+     "fresh": false
+    },
+    {
+     "tv": "HKEX:3988",
+     "symbol": "3988",
+     "name": "Bank of China",
+     "close": 6.14,
+     "since": {
+      "cross": {
+       "bars_ago": 10,
+       "px": 6.28,
+       "diff": -0.14,
+       "pct": -2.2,
+       "date": "2026-11-13"
+      }
+     },
+     "above_hma": false,
+     "gap_pct": 1.07,
+     "from_high": -4.4,
+     "earnings": null,
+     "fund": null,
+     "signals": [
+      {
+       "type": "MA cross",
+       "bars_ago": 10,
+       "px": 6.28,
+       "date": "2026-11-13"
+      }
+     ],
+     "best": 10,
+     "fresh": false
+    }
+   ]
+  }
+ }
+}

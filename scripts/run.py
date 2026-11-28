@@ -835,7 +835,8 @@ def page(scan, past, depth):
         mon_rows = m.get("monitored") or []
         if mon_rows:
             parts.append(f"<h3>Still monitored (signal older than {WINDOW} candles, MA or Hull MA still bullish)</h3>" + table(mon_rows, scan["scan_date"]))
-        parts.append("<h3>Removed from monitoring</h3>" + removed_html(m.get("removed") or [], scan["scan_date"]))
+        if "removed" in m:
+            parts.append("<h3>Removed from monitoring</h3>" + removed_html(m["removed"], scan["scan_date"]))
         parts.append("</section>")
     parts.append(f'<section class="panel" id="p{len(mk)}" role="tabpanel">{track_html(scans_all)}</section>')
     parts.append(f'<section class="panel" id="p{len(mk) + 1}" role="tabpanel">{analysis_html(scans_all)}</section>')
