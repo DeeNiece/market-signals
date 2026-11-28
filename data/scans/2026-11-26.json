@@ -1,6 +1,6 @@
 {
  "scan_date": "2026-11-26",
- "run_at": "2026-11-26T17:24:41+08:00",
+ "run_at": "2026-11-28T10:18:43+08:00",
  "fresh_n": 5,
  "markets": {
   "PSEi": {
@@ -58,6 +58,7 @@
      "fresh": true,
      "above_hma": true,
      "gap_pct": -7.8,
+     "from_high": -26.6,
      "earnings": null,
      "fund": null
     },
@@ -78,6 +79,7 @@
      "fresh": true,
      "above_hma": true,
      "gap_pct": 0.5,
+     "from_high": -24.6,
      "earnings": null,
      "fund": null
     },
@@ -104,6 +106,7 @@
      "fresh": true,
      "above_hma": false,
      "gap_pct": 0.48,
+     "from_high": -18.5,
      "earnings": null,
      "fund": null
     },
@@ -124,6 +127,7 @@
      "fresh": false,
      "above_hma": false,
      "gap_pct": 0.13,
+     "from_high": -7.2,
      "earnings": null,
      "fund": null
     },
@@ -144,6 +148,7 @@
      "fresh": false,
      "above_hma": true,
      "gap_pct": 1.53,
+     "from_high": -2.5,
      "earnings": null,
      "fund": null
     },
@@ -164,6 +169,7 @@
      "fresh": false,
      "above_hma": false,
      "gap_pct": 4.59,
+     "from_high": -31.3,
      "earnings": null,
      "fund": null
     },
@@ -184,6 +190,7 @@
      "fresh": false,
      "above_hma": false,
      "gap_pct": 2.03,
+     "from_high": -14.5,
      "earnings": null,
      "fund": null
     }
@@ -264,6 +271,7 @@
      "fresh": false,
      "above_hma": false,
      "gap_pct": 2.6,
+     "from_high": -50.7,
      "earnings": null,
      "fund": null
     },
@@ -284,6 +292,7 @@
      "fresh": false,
      "above_hma": false,
      "gap_pct": 4.63,
+     "from_high": -70.5,
      "earnings": null,
      "fund": null
     },
@@ -304,6 +313,7 @@
      "fresh": false,
      "above_hma": true,
      "gap_pct": 1.6,
+     "from_high": -2.0,
      "earnings": null,
      "fund": null
     },
@@ -324,6 +334,7 @@
      "fresh": false,
      "above_hma": true,
      "gap_pct": 1.39,
+     "from_high": -26.7,
      "earnings": null,
      "fund": null
     },
@@ -344,6 +355,7 @@
      "fresh": false,
      "above_hma": false,
      "gap_pct": 1.61,
+     "from_high": -49.6,
      "earnings": null,
      "fund": null
     }

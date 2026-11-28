@@ -119,7 +119,13 @@ def fund_clean(f):
             "rev_surp": r("revenue_surprise_percent_fq"), "sector": f.get("sector")}
 
 
+def load_highs():
+    f = os.path.join(ROOT, "data", "highs.json")
+    return json.load(open(f)).get("high", {}) if os.path.exists(f) else {}
+
+
 def run_scan(inp):
+    highs = load_highs()
     scan_date = max(st["last_date"] for m in inp["markets"].values() for st in m["stocks"])
     d0 = dt.date.fromisoformat(scan_date)
     out = {"scan_date": scan_date, "run_at": inp.get("run_at", ""), "fresh_n": FRESH, "markets": {}}
@@ -149,10 +155,12 @@ def run_scan(inp):
                 if len(cal) > x["bars_ago"] and cal[-1] == st["last_date"]:
                     x["date"] = cal[-1 - x["bars_ago"]]
             best = min(x["bars_ago"] for x in r["signals"])
+            hi = max([highs[st["tv"]]] + st["closes"]) if st["tv"] in highs else None
+            from_high = round((r["close"] / hi - 1) * 100, 1) if hi else None
             rows.append({
                 "tv": st["tv"], "symbol": st["symbol"], "name": st["name"],
                 "close": r["close"], "signals": r["signals"], "best": best,
-                "fresh": best < FRESH, "above_hma": r["above_hma"], "gap_pct": r["gap_pct"],
+                "fresh": best < FRESH, "above_hma": r["above_hma"], "gap_pct": r["gap_pct"], "from_high": from_high,
                 "earnings": e if soon else None,
                 "fund": fund_clean(st.get("fund")),
             })
@@ -309,18 +317,19 @@ def sig_txt(x, close=None):
 def table(rows, scan_date=None):
     if not rows:
         return '<p class="mut">None.</p>'
-    t = ['<div class="wrap"><table><tr><th>Stock</th><th>Signals</th><th>Price vs HMA 26</th><th>9 vs 26 SMA</th><th>Earnings</th></tr>']
+    t = ['<div class="wrap"><table><tr><th>Stock</th><th>Signals</th><th>Price vs HMA 26</th><th>9 vs 26 SMA</th><th>vs 52-wk high</th><th>Earnings</th></tr>']
     for r in rows:
         link = "https://www.tradingview.com/chart/?symbol=" + r["tv"].replace(":", "%3A")
         sig = "".join(f'<span class="tag">{sig_txt(s, r["close"])}</span>' for s in r["signals"])
         vs = '<span class="up">Above</span>' if r["above_hma"] else '<span class="dn">Below</span>'
+        fh = f'<span class="{"dn" if r.get("from_high") is not None and r["from_high"] < -0.05 else ""}">{r["from_high"]:+.1f}%</span>' if r.get("from_high") is not None else "&ndash;"
         e = f'<span class="warn">{html.escape(r["earnings"])}</span>' if r["earnings"] else "&ndash;"
         t.append(
             f'<tr class="s"><td><a href="{link}" target="_blank" rel="noopener">{html.escape(r["symbol"])}</a>'
             f'<br><span class="mut small">{html.escape(r["name"])}</span>'
             f'<br><span class="mut small">Close {dt.date.fromisoformat(scan_date).strftime("%d %b") if scan_date else "last"}: {fmt_px(r["close"])}</span></td>'
             f"<td class=\"sg\" data-l=\"Signals\">{sig}</td><td data-l=\"Price vs HMA 26\">{vs}</td>"
-            f"<td data-l=\"9 vs 26 SMA\"><span class=\"{'up' if r['gap_pct'] > 0 else ('dn' if r['gap_pct'] < 0 else '')}\">{r['gap_pct']:+.2f}%</span></td><td data-l=\"Earnings\">{e}</td></tr>")
+            f"<td data-l=\"9 vs 26 SMA\"><span class=\"{'up' if r['gap_pct'] > 0 else ('dn' if r['gap_pct'] < 0 else '')}\">{r['gap_pct']:+.2f}%</span></td><td data-l=\"vs 52-wk high\">{fh}</td><td data-l=\"Earnings\">{e}</td></tr>")
         t.append(fund_html(r.get("fund"), scan_date) if scan_date else "")
     t.append("</table></div>")
     return "".join(t)
@@ -750,7 +759,7 @@ def page(scan, past, depth):
                  "<p><b>MA cross:</b> the simple 9-period average closes above the simple 26-period average, and is still above it at the latest close.</p>"
                  "<p><b>HMA turn:</b> the 26-period Hull MA stops falling and starts rising, and is still rising at the latest close. "
                  "No minimum size is applied, so a turn on a flat line can be weak.</p>"
-                 "<p><b>Price vs HMA 26:</b> whether the latest close is above the Hull MA. <b>9 vs 26 SMA:</b> the gap between the two averages.</p>"
+                 "<p><b>Price vs HMA 26:</b> whether the latest close is above the Hull MA. <b>9 vs 26 SMA:</b> the gap between the two averages. <b>vs 52-wk high:</b> how far the latest close is below the highest price of the last 52 weeks.</p>"
                  "<p><b>Earnings:</b> shown only when results are due within 7 days of the scan date, because signals around earnings are less reliable.</p>"
                  "<p><b>Fundamentals line:</b> numbers from TradingView. EPS and revenue vs est. compare the last report with analyst estimates. "
                  "Revenue 12m and EPS 12m are growth over the last twelve months. n/m means not meaningful (a tiny base gives huge percentages). "
