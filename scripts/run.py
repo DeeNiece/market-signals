@@ -126,6 +126,21 @@ def load_highs():
     return json.load(open(f)).get("high", {}) if os.path.exists(f) else {}
 
 
+def load_divs():
+    f = os.path.join(ROOT, "data", "dividends.json")
+    return json.load(open(f)).get("div", {}) if os.path.exists(f) else {}
+
+
+def raw_adj(divs, tv, date, px):
+    """Stored closes before an ex-date are dividend-adjusted. Return (raw price, dividends paid since that date)."""
+    raw, amt = px, 0.0
+    for d in divs.get(tv, []):
+        if date and date < d["ex"]:
+            raw = raw * d["prev_close"] / (d["prev_close"] - d["amount"])
+            amt += d["amount"]
+    return round(raw, 4), round(amt, 4)
+
+
 MON_FILE = os.path.join(ROOT, "data", "monitor.json")
 
 
@@ -141,6 +156,7 @@ def prev_members(mon, scan_date, market):
 def run_scan(inp):
     highs = load_highs()
     mon = load_monitor()
+    divs = load_divs()
     all_members = {}
     scan_date = max(st["last_date"] for m in inp["markets"].values() for st in m["stocks"])
     d0 = dt.date.fromisoformat(scan_date)
@@ -164,10 +180,18 @@ def run_scan(inp):
             for key, ago in (("cross", r["last_cross"]), ("turn", r["last_turn"])):
                 if ago is not None and len(st["closes"]) > ago:
                     px = round(st["closes"][-1 - ago], 4)
+                    dsig = cal[-1 - ago] if len(cal) > ago and cal[-1] == st["last_date"] else None
+                    dv = 0.0
+                    if dsig:
+                        px, dv = raw_adj(divs, st["tv"], dsig, px)
                     since[key] = {"bars_ago": ago, "px": px, "diff": round(r["close"] - px, 4),
                                   "pct": round((r["close"] / px - 1) * 100, 1)}
-                    if len(cal) > ago and cal[-1] == st["last_date"]:
-                        since[key]["date"] = cal[-1 - ago]
+                    if dsig:
+                        since[key]["date"] = dsig
+                    if dv:
+                        since[key]["div"] = dv
+                        since[key]["tr_diff"] = round(r["close"] + dv - px, 4)
+                        since[key]["tr_pct"] = round(((r["close"] + dv) / px - 1) * 100, 1)
             was = prev.get(st["tv"])
             active = r["ma_bull_now"] or r["hma_up_now"]
             if was and not active:
@@ -188,6 +212,8 @@ def run_scan(inp):
                     x["px"] = round(st["closes"][-1 - x["bars_ago"]], 4)
                 if len(cal) > x["bars_ago"] and cal[-1] == st["last_date"]:
                     x["date"] = cal[-1 - x["bars_ago"]]
+                    if "px" in x:
+                        x["px"] = raw_adj(divs, st["tv"], x["date"], x["px"])[0]
             hi = max([highs[st["tv"]]] + st["closes"]) if st["tv"] in highs else None
             from_high = round((r["close"] / hi - 1) * 100, 1) if hi else None
             base = {
@@ -376,7 +402,9 @@ def table(rows, scan_date=None):
         c = "up" if x["pct"] > 0 else ("dn" if x["pct"] < 0 else "")
         d = f" ({fmt_short(x['date'])})" if x.get("date") else ""
         df = f' ({x["diff"]:+,.2f})' if x.get("diff") is not None else ""
-        return f'<span class="{c}">{x["pct"]:+.1f}%{df}</span><br><span class="mut small">{bars_txt(x["bars_ago"])}{d}</span>'
+        dv = (f'<br><span class="small {"up" if x["tr_pct"] > 0 else ("dn" if x["tr_pct"] < 0 else "")}">with dividend {x["tr_pct"]:+.1f}% ({x["tr_diff"]:+,.2f})</span>'
+              if x.get("tr_pct") is not None else "")
+        return f'<span class="{c}">{x["pct"]:+.1f}%{df}</span>{dv}<br><span class="mut small">{bars_txt(x["bars_ago"])}{d}</span>'
     t = ['<div class="wrap"><table><tr><th>Stock</th><th>Signals</th><th>Since MA cross</th><th>Since HMA turn</th><th>Price vs HMA 26</th><th>9 vs 26 SMA</th><th>Distance from 52-wk high</th><th>Earnings</th></tr>']
     for r in rows:
         link = "https://www.tradingview.com/chart/?symbol=" + r["tv"].replace(":", "%3A")
@@ -844,7 +872,7 @@ def page(scan, past, depth):
                  "<p><b>MA cross:</b> the simple 9-period average closes above the simple 26-period average, and is still above it at the latest close.</p>"
                  "<p><b>HMA turn:</b> the 26-period Hull MA stops falling and starts rising, and is still rising at the latest close. "
                  "No minimum size is applied, so a turn on a flat line can be weak.</p>"
-                 "<p><b>Price vs HMA 26:</b> whether the latest close is above the Hull MA. <b>9 vs 26 SMA:</b> the gap between the two averages. <b>Prices:</b> raw daily closes, not adjusted for dividends. A stock that went ex-dividend in the last 10 weeks can look weaker here than on a dividend-adjusted chart. <b>Since MA cross / Since HMA turn:</b> price change from the close on the day of the last 9/26 cross, and of the last Hull MA turn up, to the latest close. Shown while the cross or turn is still in force, even if it is older than 12 candles. <b>Distance from 52-wk high:</b> how far the latest close is below the highest price of the last 52 weeks.</p>"
+                 "<p><b>Price vs HMA 26:</b> whether the latest close is above the Hull MA. <b>9 vs 26 SMA:</b> the gap between the two averages. <b>Prices and dividends:</b> gains are plain price differences (the price you would have paid and the price now). Where a stock went ex-dividend after the signal, a second line shows the gain with the dividend added. Signals themselves use dividend-adjusted prices where we have them, so a dividend drop does not create a false signal. We only have dividend data for some stocks so far. <b>Since MA cross / Since HMA turn:</b> price change from the close on the day of the last 9/26 cross, and of the last Hull MA turn up, to the latest close. Shown while the cross or turn is still in force, even if it is older than 12 candles. <b>Distance from 52-wk high:</b> how far the latest close is below the highest price of the last 52 weeks.</p>"
                  "<p><b>Monitoring:</b> a stock is added when it shows a fresh or earlier signal. It stays on the list while the 9 SMA is above the 26 SMA or the Hull MA 26 is rising, even after its signal is older than 12 candles. When the 9 SMA is below the 26 SMA and the Hull MA is falling, it is removed and shown under Removed from monitoring for that scan.</p>"
                  "<p><b>Earnings:</b> shown only when results are due within 7 days of the scan date, because signals around earnings are less reliable.</p>"
                  "<p><b>Fundamentals line:</b> numbers from TradingView. EPS and revenue vs est. compare the last report with analyst estimates. "

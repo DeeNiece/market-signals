@@ -1,0 +1,12 @@
+{
+ "note": "Dividends for stocks whose stored closes are dividend-adjusted (all closes BEFORE the ex-date were replaced by adjusted closes from a TradingView chart export). prev_close = raw close the day before the ex-date; it lets the scan recover the raw price. Add a stock here only together with its adjusted history.",
+ "div": {
+  "PSE:MONDE": [
+   {
+    "ex": "2026-11-24",
+    "amount": 0.26,
+    "prev_close": 6.45
+   }
+  ]
+ }
+}
